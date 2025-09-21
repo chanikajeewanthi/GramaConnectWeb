@@ -1,0 +1,942 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Farmer's Corner - GramaConnect</title>-->
+<!--    <link rel="stylesheet" href="../css/styles.css">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash; Navigation &ndash;&gt;-->
+<!--<nav class="navbar">-->
+<!--    <div class="nav-container">-->
+<!--        <div class="nav-brand">-->
+<!--            <h1>GramaConnect</h1>-->
+<!--            <span class="tagline">ගම් සම්බන්ධතාව</span>-->
+<!--        </div>-->
+<!--        <div class="nav-menu">-->
+<!--            <button class="btn btn-secondary" id="logoutBtn">Logout</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--&lt;!&ndash; Main Container &ndash;&gt;-->
+<!--<main class="main-container">-->
+<!--    <section class="screen active module-screen">-->
+<!--        <div class="module-header">-->
+<!--            <a href="dashboard.html" class="back-btn">← Back</a>-->
+<!--            <h2>Farmer's Corner</h2>-->
+<!--            <div class="city-input">-->
+<!--                <input type="text" id="cityName" placeholder="නගරය ඇතුළත් කරන්න" />-->
+<!--                <button id="getWeatherBtn">සොයන්න</button>-->
+<!--            </div>-->
+<!--            <div class="weather-widget">-->
+<!--                <div class="weather-icon">☀️</div>-->
+<!--                <div class="weather-info">-->
+<!--                    <span class="temp">28°C</span>-->
+<!--                    <span class="condition">Sunny</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div id="weatherPopup" class="popup-modal">-->
+<!--            <div class="popup-content">-->
+<!--                <span id="popupClose" class="popup-close">&times;</span>-->
+<!--                <div class="popup-weather">-->
+<!--                    <div class="popup-icon"></div>-->
+<!--                    <div class="popup-details">-->
+<!--                        <p id="popupTemp"></p>-->
+<!--                        <p id="popupCondition"></p>-->
+<!--                        <p id="popupMessage" class="popup-message"></p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="farming-tabs">-->
+<!--            <button class="tab-btn active" data-tab="alerts">Weather Alerts</button>-->
+<!--            <button class="tab-btn" data-tab="tips">Farming Tips</button>-->
+<!--            <button class="tab-btn" data-tab="report">Report Issues</button>-->
+<!--        </div>-->
+
+<!--        <div class="tab-content active" data-content="alerts">-->
+<!--            <div class="alert-card warning">-->
+<!--                <h3>Heavy Rain Warning</h3>-->
+<!--                <p>Heavy rainfall expected in the next 48 hours. Protect your crops and ensure proper drainage.</p>-->
+<!--                <p class="sinhala">ඉදිරි පැය 48 තුළ අධික වර්ෂාව අපේක්ෂා කරයි. ඔබේ භෝග ආරක්ෂා කර නියම ජල පහසුකම් සලසන්න.</p>-->
+<!--            </div>-->
+
+<!--            <div class="alert-card info">-->
+<!--                <h3>Best Planting Time</h3>-->
+<!--                <p>Ideal conditions for planting rice. Soil moisture and temperature are optimal.</p>-->
+<!--                <p class="sinhala">කුඹුරු සිටුවීම සඳහා කදිම කාලගුණික තත්ත්වයන්. පස් තෙතමනය හා උෂ්ණත්වය ප්‍රශස්තයි.</p>-->
+<!--            </div>-->
+
+<!--            <div class="alert-card warning">-->
+<!--                <h3>Pest Alert</h3>-->
+<!--                <p>Brown planthopper activity reported in nearby areas. Monitor your crops closely.</p>-->
+<!--                <p class="sinhala">අවට ප්‍රදේශවල දුඹුරු කොළ මකුණන්ගේ ක්‍රියාකාරකම් වාර්තා වී ඇත. ඔබේ භෝග සමීපව නිරීක්ෂණය කරන්න.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="tab-content" data-content="tips">-->
+<!--            <div class="tip-card">-->
+<!--                <h3>Pest Management</h3>-->
+<!--                <p>Natural pest control using neem oil and companion planting techniques. Effective against most common pests.</p>-->
+<!--                <p class="sinhala">කොහොඹ තෙල් සහ සහකාර වගා ක්‍රම භාවිතයෙන් ස්වභාවික පළිබෝධ පාලනය.</p>-->
+<!--                <div class="tip-actions">-->
+<!--                    <button class="btn btn-outline">Learn More</button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="tip-card">-->
+<!--                <h3>Soil Health</h3>-->
+<!--                <p>How to maintain soil fertility using organic compost and crop rotation methods.</p>-->
+<!--                <p class="sinhala">කාබනික කොම්පෝස්ට් සහ භෝග මාරුව භාවිතයෙන් පස් සාරවත්කම පවත්වා ගන්නා ආකාරය.</p>-->
+<!--                <div class="tip-actions">-->
+<!--                    <button class="btn btn-outline">Learn More</button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="tip-card">-->
+<!--                <h3>Water Management</h3>-->
+<!--                <p>Efficient irrigation techniques to conserve water while maximizing crop yield.</p>-->
+<!--                <p class="sinhala">භෝග අස්වැන්න වැඩි කරමින් ජලය සුරැකීමේ කාර්යක්ෂම වාරිමාර්ග ක්‍රම.</p>-->
+<!--                <div class="tip-actions">-->
+<!--                    <button class="btn btn-outline">Learn More</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="tab-content" data-content="report">-->
+<!--            <div class="report-form">-->
+<!--                <h3>Report Crop Issues</h3>-->
+<!--                <form class="crop-report-form" id="cropReportForm">-->
+<!--                    <div class="form-group">-->
+<!--                        <label>Issue Type</label>-->
+<!--                        <select id="issueType" required>-->
+<!--                            <option value="">Select issue type</option>-->
+<!--                            <option value="pest">Pest Attack</option>-->
+<!--                            <option value="disease">Plant Disease</option>-->
+<!--                            <option value="weather">Weather Damage</option>-->
+<!--                            <option value="irrigation">Irrigation Problems</option>-->
+<!--                            <option value="other">Other</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                        <label>Crop Type</label>-->
+<!--                        <select id="cropType" required>-->
+<!--                            <option value="">Select crop</option>-->
+<!--                            <option value="rice">Rice / කුඹුරු</option>-->
+<!--                            <option value="vegetables">Vegetables / එළවළු</option>-->
+<!--                            <option value="fruits">Fruits / පලතුරු</option>-->
+<!--                            <option value="spices">Spices / කුළුබඩු</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                        <label>Description</label>-->
+<!--                        <textarea id="description" placeholder="Describe the issue in detail..." required></textarea>-->
+<!--                    </div>-->
+
+<!--                    <div class="form-group">-->
+<!--                        <label>Upload Photo</label>-->
+<!--                        <input id="photoInput" type="file" accept="image/*" class="file-input">-->
+<!--                    </div>-->
+
+<!--                    <button type="submit" class="btn btn-primary">Submit Report</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="tab-content" data-content="myReports">-->
+<!--            <h3>My Crop Reports</h3>-->
+<!--            <table id="reportsTable">-->
+<!--                <thead>-->
+<!--                <tr>-->
+<!--                    <th>ID</th>-->
+<!--                    <th>Issue</th>-->
+<!--                    <th>Crop</th>-->
+<!--                    <th>Description</th>-->
+<!--                    <th>Actions</th>-->
+<!--                </tr>-->
+<!--                </thead>-->
+<!--                <tbody></tbody>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Edit Report Modal &ndash;&gt;-->
+<!--        <div id="editReportModal" class="popup-modal">-->
+<!--            <div class="popup-content">-->
+<!--                <span id="editClose" class="popup-close">&times;</span>-->
+<!--                <h3>වාර්තාව සංශෝධනය කරන්න</h3>-->
+<!--                <form id="editReportForm">-->
+<!--                    <input type="hidden" id="editReportId">-->
+<!--                    <div class="form-group">-->
+<!--                        <label>Issue Type</label>-->
+<!--                        <input type="text" id="editIssueType" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label>Crop Type</label>-->
+<!--                        <input type="text" id="editCropType" required>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label>Description</label>-->
+<!--                        <textarea id="editDescription" required></textarea>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <label>Photo URL</label>-->
+<!--                        <input type="text" id="editPhotoUrl">-->
+<!--                    </div>-->
+<!--                    <button type="submit" class="btn btn-primary">Update</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+<!--    </section>-->
+<!--</main>-->
+
+<!--&lt;!&ndash; Toast Notifications &ndash;&gt;-->
+<!--<div id="toastContainer" class="toast-container"></div>-->
+
+<!--<script>-->
+<!--    async function fetchWeather(city = 'Niyagama') {-->
+<!--        const apiKey = '2872e738b51ed18a93b31193fcef75f4';-->
+<!--        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;-->
+
+<!--        try {-->
+<!--            const res = await fetch(url);-->
+<!--            if (!res.ok) throw new Error('Weather fetch failed');-->
+<!--            const data = await res.json();-->
+
+<!--            const temp = Math.round(data.main.temp);-->
+<!--            const condition = data.weather[0].main;-->
+<!--            const iconCode = data.weather[0].icon;-->
+
+<!--            // Update widget-->
+<!--            document.querySelector('.weather-widget .temp').textContent = temp + '°C';-->
+<!--            document.querySelector('.weather-widget .condition').textContent = condition;-->
+<!--            document.querySelector('.weather-widget .weather-icon').innerHTML =-->
+<!--                `<img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="${condition}" />`;-->
+
+<!--        } catch (err) {-->
+<!--            console.error(err);-->
+<!--            document.querySelector('.weather-widget .condition').textContent = 'Unavailable';-->
+<!--            document.querySelector('.weather-widget .temp').textContent = '&#45;&#45;';-->
+<!--            document.querySelector('.weather-widget .weather-icon').textContent = '❌';-->
+<!--        }-->
+<!--    }-->
+
+<!--    // Initial fetch-->
+<!--    fetchWeather();-->
+
+<!--    document.addEventListener('DOMContentLoaded', () => {-->
+<!--        const weatherWidget = document.querySelector('.weather-widget');-->
+<!--        const popup = document.getElementById('weatherPopup');-->
+<!--        const popupClose = document.getElementById('popupClose');-->
+<!--        const popupMessage = document.getElementById('popupMessage');-->
+<!--        const popupTemp = document.getElementById('popupTemp');-->
+<!--        const popupCondition = document.getElementById('popupCondition');-->
+<!--        const popupIcon = document.querySelector('.popup-icon');-->
+
+<!--        const cityInput = document.getElementById('cityName');-->
+<!--        const getWeatherBtn = document.getElementById('getWeatherBtn');-->
+
+<!--        // Update weather when button clicked-->
+<!--        getWeatherBtn.addEventListener('click', () => {-->
+<!--            const city = cityInput.value.trim();-->
+<!--            if (city) fetchWeather(city);-->
+<!--        });-->
+
+<!--        // Show popup on widget click-->
+<!--        weatherWidget.addEventListener('click', () => {-->
+<!--            const temp = parseInt(document.querySelector('.weather-widget .temp').textContent);-->
+<!--            const condition = document.querySelector('.weather-widget .condition').textContent;-->
+<!--            const iconSrc = document.querySelector('.weather-widget .weather-icon img')?.src || '';-->
+
+<!--            popupTemp.textContent = `උෂ්ණත්වය: ${temp}°C`;-->
+<!--            popupCondition.textContent = `අවදානම්: ${condition}`;-->
+<!--            popupIcon.innerHTML = `<img src="${iconSrc}" alt="${condition}" />`;-->
+
+<!--            let message = '';-->
+<!--            if (condition.toLowerCase().includes('rain') || condition.toLowerCase().includes('storm') || temp < 15) {-->
+<!--                message = "අද කෘෂිකර්මයට සුදුසු නොවේ. දැඩි සාවධානයෙන් කෘෂිකර්මය කරන්න!";-->
+<!--                popupMessage.style.color = '#d9534f';-->
+<!--            } else {-->
+<!--                message = "අද කෘෂිකර්මයට සුදුසු වේ. සුරක්ෂිතව කෘෂිකර්මය කරන්න!";-->
+<!--                popupMessage.style.color = '#28a745';-->
+<!--            }-->
+
+<!--            popupMessage.textContent = message;-->
+<!--            popup.style.display = 'flex';-->
+<!--        });-->
+
+<!--        // Close popup-->
+<!--        popupClose.addEventListener('click', () => popup.style.display = 'none');-->
+<!--        window.addEventListener('click', (e) => { if (e.target === popup) popup.style.display = 'none'; });-->
+<!--    });-->
+
+
+<!--    document.addEventListener('DOMContentLoaded', () => {-->
+<!--        const tabs = document.querySelectorAll('.tab-btn');-->
+<!--        const tabContents = document.querySelectorAll('.tab-content');-->
+<!--        const toastContainer = document.getElementById('toastContainer');-->
+<!--        const cropForm = document.getElementById('cropReportForm');-->
+<!--        const logoutBtn = document.getElementById('logoutBtn');-->
+
+<!--        // ======= Toast function =======-->
+<!--        function showToast(message, type = 'success') {-->
+<!--            const toast = document.createElement('div');-->
+<!--            toast.className = `toast ${type}`;-->
+<!--            toast.textContent = message;-->
+<!--            toastContainer.appendChild(toast);-->
+<!--            setTimeout(() => toast.remove(), 3000);-->
+<!--        }-->
+
+<!--        // ======= Tab switching =======-->
+<!--        tabs.forEach(tab => {-->
+<!--            tab.addEventListener('click', () => {-->
+<!--                tabs.forEach(t => t.classList.remove('active'));-->
+<!--                tabContents.forEach(c => c.classList.remove('active'));-->
+<!--                tab.classList.add('active');-->
+<!--                const target = document.querySelector(`.tab-content[data-content="${tab.dataset.tab}"]`);-->
+<!--                if (target) target.classList.add('active');-->
+<!--            });-->
+<!--        });-->
+
+<!--        // ======= Logout =======-->
+<!--        logoutBtn.addEventListener('click', () => {-->
+<!--            localStorage.removeItem('token');-->
+<!--            window.location.href = 'index.html';-->
+<!--        });-->
+
+<!--        // ======= JWT & role check =======-->
+<!--        const token = localStorage.getItem('token');-->
+<!--        console.log('JWT token:', token);-->
+
+<!--        let userRoles = [];-->
+
+<!--        function parseJwt(token) {-->
+<!--            try {-->
+<!--                const base64Url = token.split('.')[1];-->
+<!--                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');-->
+<!--                const jsonPayload = decodeURIComponent(atob(base64).split('').map(c => {-->
+<!--                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);-->
+<!--                }).join(''));-->
+<!--                return JSON.parse(jsonPayload);-->
+<!--            } catch {-->
+<!--                return null;-->
+<!--            }-->
+<!--        }-->
+
+<!--        if (!token) {-->
+<!--            showToast('ඔබට ලොග් වීම අවශ්‍යයි', 'error');-->
+<!--            if (cropForm) cropForm.querySelector('button[type="submit"]').disabled = true;-->
+<!--        } else {-->
+<!--            const payload = parseJwt(token);-->
+<!--            if (!payload || !payload.roles) {-->
+<!--                showToast('JWT දත්ත වලංගු නොවේ', 'error');-->
+<!--                if (cropForm) cropForm.querySelector('button[type="submit"]').disabled = true;-->
+<!--            } else {-->
+<!--                userRoles = Array.isArray(payload.roles) ? payload.roles : [payload.roles];-->
+<!--                if (!userRoles.includes('ROLE_FARMER')) {-->
+<!--                    showToast('පහසුකම් වාර්තා කළ හැක්කේ ගොවියන්ට පමණි', 'error');-->
+<!--                    if (cropForm) cropForm.querySelector('button[type="submit"]').disabled = true;-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+
+<!--        // ======= Crop report form submission =======-->
+<!--        if (cropForm) {-->
+<!--            cropForm.addEventListener('submit', async (e) => {-->
+<!--                e.preventDefault();-->
+<!--                if (!userRoles.includes('ROLE_FARMER')) return;-->
+
+<!--                const issueType = document.getElementById('issueType').value;-->
+<!--                const cropType = document.getElementById('cropType').value;-->
+<!--                const description = document.getElementById('description').value;-->
+<!--                const fileInput = document.getElementById('photoInput');-->
+
+<!--                if (!issueType || !cropType || !description) {-->
+<!--                    showToast('සියලු අවශ්‍ය ක්ෂේත්‍ර පුරවන්න', 'error');-->
+<!--                    return;-->
+<!--                }-->
+
+<!--                let photoUrl = '';-->
+<!--                if (fileInput.files.length > 0) photoUrl = fileInput.files[0].name;-->
+
+<!--                const reportData = { issueType, cropType, description, photoUrl };-->
+
+<!--                try {-->
+<!--                    const res = await fetch('http://localhost:8080/api/reports', {-->
+<!--                        method: 'POST',-->
+<!--                        headers: {-->
+<!--                            'Content-Type': 'application/json',-->
+<!--                            'Authorization': 'Bearer ' + token-->
+<!--                        },-->
+<!--                        body: JSON.stringify(reportData)-->
+<!--                    });-->
+
+<!--                    if (!res.ok) {-->
+<!--                        const errMsg = await res.text();-->
+<!--                        throw new Error(errMsg || 'වාර්තාව ඉදිරිපත් කිරීමට නොහැකි විය');-->
+<!--                    }-->
+
+<!--                    const data = await res.json();-->
+<!--                    showToast('වාර්තාව සාර්ථකව ඉදිරිපත් විය!');-->
+<!--                    cropForm.reset();-->
+<!--                    console.log('Submitted report:', data);-->
+
+<!--                } catch (err) {-->
+<!--                    console.error(err);-->
+<!--                    showToast(err.message, 'error');-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    });-->
+
+
+<!--    const reportsTableBody = document.querySelector("#reportsTable tbody");-->
+
+<!--    // ===== GET My Reports =====-->
+<!--    async function loadMyReports() {-->
+<!--        try {-->
+<!--            const res = await fetch("http://localhost:8080/api/reports/my", {-->
+<!--                headers: { "Authorization": "Bearer " + token }-->
+<!--            });-->
+<!--            if (!res.ok) throw new Error("Failed to fetch reports");-->
+
+<!--            const reports = await res.json();-->
+<!--            reportsTableBody.innerHTML = "";-->
+
+<!--            reports.forEach(r => {-->
+<!--                const row = document.createElement("tr");-->
+<!--                row.innerHTML = `-->
+<!--                <td>${r.id}</td>-->
+<!--                <td>${r.issueType}</td>-->
+<!--                <td>${r.cropType}</td>-->
+<!--                <td>${r.description}</td>-->
+<!--                <td>-->
+<!--                    <button onclick="editReport(${r.id})">Edit</button>-->
+<!--                    <button onclick="deleteReport(${r.id})">Delete</button>-->
+<!--                </td>-->
+<!--            `;-->
+<!--                reportsTableBody.appendChild(row);-->
+<!--            });-->
+<!--        } catch (err) {-->
+<!--            console.error(err);-->
+<!--            showToast("Reports load error", "error");-->
+<!--        }-->
+<!--    }-->
+
+<!--    // ===== DELETE Report =====-->
+<!--    async function deleteReport(id) {-->
+<!--        if (!confirm("Are you sure to delete this report?")) return;-->
+<!--        try {-->
+<!--            const res = await fetch(`http://localhost:8080/api/reports/${id}`, {-->
+<!--                method: "DELETE"-->
+<!--            });-->
+<!--            if (!res.ok) throw new Error("Delete failed");-->
+<!--            showToast("Report deleted successfully!");-->
+<!--            loadMyReports();-->
+<!--        } catch (err) {-->
+<!--            console.error(err);-->
+<!--            showToast("Delete error", "error");-->
+<!--        }-->
+<!--    }-->
+
+<!--    // ===== EDIT Report =====-->
+<!--    async function editReport(id) {-->
+<!--        const newDesc = prompt("Enter new description:");-->
+<!--        if (!newDesc) return;-->
+
+<!--        try {-->
+<!--            const res = await fetch(`http://localhost:8080/api/reports/${id}`, {-->
+<!--                method: "PUT",-->
+<!--                headers: {-->
+<!--                    "Content-Type": "application/json",-->
+<!--                    "Authorization": "Bearer " + token-->
+<!--                },-->
+<!--                body: JSON.stringify({ description: newDesc })-->
+<!--            });-->
+
+<!--            if (!res.ok) throw new Error("Update failed");-->
+
+<!--            showToast("Report updated!");-->
+<!--            loadMyReports();-->
+<!--        } catch (err) {-->
+<!--            console.error(err);-->
+<!--            showToast("Update error", "error");-->
+<!--        }-->
+<!--    }-->
+
+<!--    // Load reports on page start-->
+<!--    document.addEventListener("DOMContentLoaded", loadMyReports);-->
+
+<!--</script>-->
+
+
+
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer's Corner - GramaConnect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <h1>GramaConnect</h1>
+            <span class="tagline">ගම් සම්බන්ධතාව</span>
+        </div>
+        <div class="nav-menu">
+            <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Container -->
+<main class="main-container">
+    <section class="screen active module-screen">
+        <div class="module-header">
+            <a href="dashboard.html" class="back-btn">← Back</a>
+            <h2>Farmer's Corner</h2>
+            <div class="city-input">
+                <input type="text" id="cityName" placeholder="නගරය ඇතුළත් කරන්න" />
+                <button id="getWeatherBtn">සොයන්න</button>
+            </div>
+            <div class="weather-widget">
+                <div class="weather-icon">☀️</div>
+                <div class="weather-info">
+                    <span class="temp">28°C</span>
+                    <span class="condition">Sunny</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Popup -->
+        <div id="weatherPopup" class="popup-modal">
+            <div class="popup-content">
+                <span id="popupClose" class="popup-close">&times;</span>
+                <div class="popup-weather">
+                    <div class="popup-icon"></div>
+                    <div class="popup-details">
+                        <p id="popupTemp"></p>
+                        <p id="popupCondition"></p>
+                        <p id="popupMessage" class="popup-message"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="farming-tabs">
+            <button class="tab-btn active" data-tab="alerts">Weather Alerts</button>
+            <button class="tab-btn" data-tab="tips">Farming Tips</button>
+            <button class="tab-btn" data-tab="report">Report Issues</button>
+            <button class="tab-btn" data-tab="myReports">My Reports</button>
+        </div>
+
+        <!-- Alerts -->
+        <div class="tab-content active" data-content="alerts">
+            <div class="alert-card warning">
+                <h3>Heavy Rain Warning</h3>
+                <p>Heavy rainfall expected in the next 48 hours. Protect your crops and ensure proper drainage.</p>
+                <p class="sinhala">ඉදිරි පැය 48 තුළ අධික වර්ෂාව අපේක්ෂා කරයි. ඔබේ භෝග ආරක්ෂා කර නියම ජල පහසුකම් සලසන්න.</p>
+            </div>
+            <div class="alert-card info">
+                <h3>Best Planting Time</h3>
+                <p>Ideal conditions for planting rice. Soil moisture and temperature are optimal.</p>
+                <p class="sinhala">කුඹුරු සිටුවීම සඳහා කදිම කාලගුණික තත්ත්වයන්. පස් තෙතමනය හා උෂ්ණත්වය ප්‍රශස්තයි.</p>
+            </div>
+            <div class="alert-card warning">
+                <h3>Pest Alert</h3>
+                <p>Brown planthopper activity reported in nearby areas. Monitor your crops closely.</p>
+                <p class="sinhala">අවට ප්‍රදේශවල දුඹුරු කොළ මකුණන්ගේ ක්‍රියාකාරකම් වාර්තා වී ඇත. ඔබේ භෝග සමීපව නිරීක්ෂණය කරන්න.</p>
+            </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="tab-content" data-content="tips">
+            <div class="tip-card">
+                <h3>Pest Management</h3>
+                <p>Natural pest control using neem oil and companion planting techniques.</p>
+                <p class="sinhala">කොහොඹ තෙල් සහ සහකාර වගා ක්‍රම භාවිතයෙන් ස්වභාවික පළිබෝධ පාලනය.</p>
+            </div>
+            <div class="tip-card">
+                <h3>Soil Health</h3>
+                <p>Maintain soil fertility using compost and crop rotation methods.</p>
+                <p class="sinhala">කාබනික කොම්පෝස්ට් සහ භෝග මාරුව භාවිතයෙන් පස් සාරවත්කම පවත්වා ගන්න.</p>
+            </div>
+            <div class="tip-card">
+                <h3>Water Management</h3>
+                <p>Efficient irrigation to conserve water while maximizing yield.</p>
+                <p class="sinhala">භෝග අස්වැන්න වැඩි කරමින් ජලය සුරැකීමේ කාර්යක්ෂම වාරිමාර්ග.</p>
+            </div>
+        </div>
+
+        <!-- Report Form -->
+        <div class="tab-content" data-content="report">
+            <div class="report-form">
+                <h3>Report Crop Issues</h3>
+                <form class="crop-report-form" id="cropReportForm">
+                    <div class="form-group">
+                        <label>Issue Type</label>
+                        <select id="issueType" required>
+                            <option value="">Select issue type</option>
+                            <option value="pest">Pest Attack</option>
+                            <option value="disease">Plant Disease</option>
+                            <option value="weather">Weather Damage</option>
+                            <option value="irrigation">Irrigation Problems</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Crop Type</label>
+                        <select id="cropType" required>
+                            <option value="">Select crop</option>
+                            <option value="rice">Rice / කුඹුරු</option>
+                            <option value="vegetables">Vegetables / එළවළු</option>
+                            <option value="fruits">Fruits / පලතුරු</option>
+                            <option value="spices">Spices / කුළුබඩු</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="description" placeholder="Describe the issue..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Photo</label>
+                        <input id="photoInput" type="file" accept="image/*" class="file-input">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Report</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- My Reports -->
+        <div class="tab-content" data-content="myReports">
+            <h3>My Crop Reports</h3>
+            <table id="reportsTable">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Issue</th>
+                    <th>Crop</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <!-- Edit Report Modal -->
+        <div id="editReportModal" class="popup-modal">
+            <div class="popup-content">
+                <span id="editClose" class="popup-close">&times;</span>
+                <h3>Edit Report</h3>
+                <form id="editReportForm">
+                    <input type="hidden" id="editReportId">
+                    <div class="form-group">
+                        <label>Issue Type</label>
+                        <input type="text" id="editIssueType" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Crop Type</label>
+                        <input type="text" id="editCropType" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="editDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Photo URL</label>
+                        <input type="text" id="editPhotoUrl">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Report</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Toast -->
+<div id="toastContainer" class="toast-container"></div>
+
+<script>
+    // ===== JWT Token Handling =====
+    function getToken() {
+        return localStorage.getItem("token");
+    }
+
+    function checkAuth() {
+        const token = getToken();
+        if (!token) {
+            alert("ඔබට පළමුව ලොග් විය යුතුය!"); // You must login first
+            window.location.href = "login.html";
+        }
+    }
+    checkAuth();
+
+    // ===== Tab Switching =====
+    document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+            document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+
+            btn.classList.add("active");
+            document.querySelector(`[data-content="${btn.dataset.tab}"]`).classList.add("active");
+
+            if (btn.dataset.tab === "myReports") {
+                fetchReports();
+            }
+        });
+    });
+
+    // ===== Weather API + Popup =====
+    async function fetchWeather(city = "Niyagama") {
+        const apiKey = "2872e738b51ed18a93b31193fcef75f4"; // your key
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+        try {
+            const res = await fetch(url);
+            if (!res.ok) throw new Error("Weather fetch failed");
+            const data = await res.json();
+
+            const temp = Math.round(data.main.temp);
+            const condition = data.weather[0].main;
+            const iconCode = data.weather[0].icon;
+
+            document.querySelector(".weather-widget .temp").textContent = temp + "°C";
+            document.querySelector(".weather-widget .condition").textContent = condition;
+            document.querySelector(".weather-widget .weather-icon").innerHTML =
+                `<img src="https://openweathermap.org/img/wn/${iconCode}@2x.png" alt="${condition}" />`;
+
+        } catch (err) {
+            console.error(err);
+            document.querySelector(".weather-widget .condition").textContent = "Unavailable";
+        }
+    }
+
+    fetchWeather();
+
+    // Weather popup
+    document.querySelector(".weather-widget").addEventListener("click", () => {
+        const temp = parseInt(document.querySelector(".weather-widget .temp").textContent);
+        const condition = document.querySelector(".weather-widget .condition").textContent;
+
+        let message = "";
+        if (condition.toLowerCase().includes("rain") || condition.toLowerCase().includes("storm") || temp < 15) {
+            message = "අද කෘෂිකර්මයට සුදුසු නොවේ. කරුණාකර අවධානයෙන් සිටින්න!";
+        } else {
+            message = "අද කෘෂිකර්මයට සුදුසුයි. ආරක්ෂිතව ඉදිරියට යා හැක!";
+        }
+
+        document.getElementById("popupMessage").textContent = message;
+        document.getElementById("popupTemp").textContent = "උෂ්ණත්වය: " + temp + "°C";
+        document.getElementById("popupCondition").textContent = "කාලගුණය: " + condition;
+        document.getElementById("weatherPopup").style.display = "flex";
+    });
+
+    document.getElementById("popupClose").addEventListener("click", () => {
+        document.getElementById("weatherPopup").style.display = "none";
+    });
+
+    // ===== Weather city search =====
+    document.getElementById("getWeatherBtn").addEventListener("click", () => {
+        const city = document.getElementById("cityName").value.trim();
+        if (city) {
+            fetchWeather(city);
+        }
+    });
+
+    // ===== Reports CRUD =====
+    const API_URL = "http://localhost:8080/api/reports";
+    console.log(localStorage.getItem("token"));
+
+    // Submit new report
+    document.getElementById("cropReportForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const report = {
+            issueType: document.getElementById("issueType").value,
+            cropType: document.getElementById("cropType").value,
+            description: document.getElementById("description").value,
+            photoUrl: document.getElementById("photoInput").files[0]?.name || ""
+        };
+
+        try {
+            const res = await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + getToken()
+                },
+                body: JSON.stringify(report)
+            });
+
+            if (!res.ok) throw new Error("Failed to submit report");
+
+            showToast("Report submitted successfully!");
+            e.target.reset();
+        } catch (err) {
+            console.error(err);
+            alert("වාර්තාව ඉදිරිපත් කිරීමට නොහැකි විය");
+        }
+    });
+
+    // Fetch reports
+    async function fetchReports() {
+        try {
+            const res = await fetch(API_URL, {
+
+                headers: { "Authorization": "Bearer " + getToken() }
+
+            });
+            if (!res.ok) throw new Error("Failed to load reports");
+
+            const reports = await res.json();
+            renderReports(reports);
+        } catch (err) {
+            console.error(err);
+            alert("වාර්තා ලබා ගැනීමට නොහැකි විය");
+        }
+    }
+
+    function renderReports(reports) {
+        const tbody = document.querySelector("#reportsTable tbody");
+        tbody.innerHTML = "";
+
+        reports.forEach(r => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+      <td>${r.id}</td>
+      <td>${r.issueType}</td>
+      <td>${r.cropType}</td>
+      <td>${r.description}</td>
+      <td>
+        <button class="btn btn-small btn-edit" data-id="${r.id}">Edit</button>
+        <button class="btn btn-small btn-delete" data-id="${r.id}">Delete</button>
+      </td>
+    `;
+            tbody.appendChild(tr);
+        });
+
+        // Attach actions
+        document.querySelectorAll(".btn-edit").forEach(btn =>
+            btn.addEventListener("click", () => openEditModal(btn.dataset.id))
+        );
+
+        document.querySelectorAll(".btn-delete").forEach(btn =>
+            btn.addEventListener("click", () => deleteReport(btn.dataset.id))
+        );
+    }
+
+    // Delete
+    async function deleteReport(id) {
+        if (!confirm("මෙම වාර්තාව මකා දැමීමට අවශ්‍යද?")) return;
+
+        try {
+            const res = await fetch(`${API_URL}/${id}`, {
+                method: "DELETE",
+                headers: { "Authorization": "Bearer " + getToken() }
+            });
+
+            if (!res.ok) throw new Error("Failed to delete");
+            showToast("Report deleted!");
+            fetchReports();
+        } catch (err) {
+            console.error(err);
+            alert("වාර්තාව මකා දැමීමට නොහැකි විය");
+        }
+    }
+
+    // Edit
+    function openEditModal(id) {
+        fetch(`${API_URL}/${id}`, {
+            headers: { "Authorization": "Bearer " + getToken() }
+        })
+            .then(res => res.json())
+            .then(report => {
+                document.getElementById("editReportId").value = report.id;
+                document.getElementById("editIssueType").value = report.issueType;
+                document.getElementById("editCropType").value = report.cropType;
+                document.getElementById("editDescription").value = report.description;
+                document.getElementById("editPhotoUrl").value = report.photoUrl || "";
+
+                document.getElementById("editReportModal").style.display = "flex";
+            });
+    }
+
+    // Update
+    document.getElementById("editReportForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const id = document.getElementById("editReportId").value;
+        const updated = {
+            issueType: document.getElementById("editIssueType").value,
+            cropType: document.getElementById("editCropType").value,
+            description: document.getElementById("editDescription").value,
+            photoUrl: document.getElementById("editPhotoUrl").value
+        };
+
+        try {
+            const res = await fetch(`${API_URL}/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + getToken()
+                },
+                body: JSON.stringify(updated)
+            });
+
+            if (!res.ok) throw new Error("Failed to update");
+            showToast("Report updated!");
+            document.getElementById("editReportModal").style.display = "none";
+            fetchReports();
+        } catch (err) {
+            console.error(err);
+            alert("වාර්තාව යාවත්කාලීන කිරීමට නොහැකි විය");
+        }
+    });
+
+    document.getElementById("editClose").addEventListener("click", () => {
+        document.getElementById("editReportModal").style.display = "none";
+    });
+
+    // ===== Toast helper =====
+    function showToast(msg) {
+        const container = document.getElementById("toastContainer");
+        const toast = document.createElement("div");
+        toast.className = "toast";
+        toast.textContent = msg;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    // ===== Logout =====
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+        localStorage.removeItem("token");
+        window.location.href = "index.html";
+    });
+
+</script>
+<!-- Scripts -->
+</body>
+</html>
+
+

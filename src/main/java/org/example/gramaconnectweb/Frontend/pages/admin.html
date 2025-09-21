@@ -1,0 +1,400 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Admin Dashboard - GramaConnect</title>-->
+<!--    <link rel="stylesheet" href="../css/styles.css">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash; Navigation &ndash;&gt;-->
+<!--<nav class="navbar">-->
+<!--    <div class="nav-container">-->
+<!--        <div class="nav-brand">-->
+<!--            <h1>GramaConnect</h1>-->
+<!--            <span class="tagline">ගම් සම්බන්ධතාව</span>-->
+<!--        </div>-->
+<!--        <div class="nav-menu">-->
+<!--            <button class="btn btn-secondary" id="logoutBtn">Logout</button>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--&lt;!&ndash; Main Container &ndash;&gt;-->
+<!--<main class="main-container">-->
+<!--    <section class="screen active module-screen admin-only">-->
+<!--        <div class="module-header">-->
+<!--            <a href="dashboard.html" class="back-btn">← Back</a>-->
+<!--            <h2>Admin Dashboard</h2>-->
+<!--        </div>-->
+
+<!--        <div class="admin-stats">-->
+<!--            <div class="stat-card">-->
+<!--                <h3>Total Users</h3>-->
+<!--                <span class="stat-number">1,247</span>-->
+<!--                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #6b7280;">+12% this month</p>-->
+<!--            </div>-->
+<!--            <div class="stat-card">-->
+<!--                <h3>Active Notices</h3>-->
+<!--                <span class="stat-number">15</span>-->
+<!--                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #6b7280;">3 pending approval</p>-->
+<!--            </div>-->
+<!--            <div class="stat-card">-->
+<!--                <h3>Job Postings</h3>-->
+<!--                <span class="stat-number">23</span>-->
+<!--                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #6b7280;">8 new this week</p>-->
+<!--            </div>-->
+<!--            <div class="stat-card">-->
+<!--                <h3>Health Updates</h3>-->
+<!--                <span class="stat-number">8</span>-->
+<!--                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #6b7280;">2 urgent alerts</p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div style="display: grid; gap: 2rem; margin-top: 2rem;">-->
+<!--            <div class="card" style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">-->
+<!--                <h3>Quick Actions</h3>-->
+<!--                <div class="admin-actions">-->
+<!--                    <button class="btn btn-primary" onclick="moderateContent()">Moderate Content</button>-->
+<!--                    <button class="btn btn-primary" onclick="manageUsers()">User Management</button>-->
+<!--                    <button class="btn btn-primary" onclick="systemSettings()">System Settings</button>-->
+<!--                    <button class="btn btn-primary" onclick="generateReports()">Generate Reports</button>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="card" style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">-->
+<!--                <h3>Recent Activity</h3>-->
+<!--                <div style="margin-top: 1rem;">-->
+<!--                    <div style="padding: 1rem 0; border-bottom: 1px solid #f3f4f6;">-->
+<!--                        <div style="display: flex; justify-content: space-between; align-items: center;">-->
+<!--                            <div>-->
+<!--                                <strong>New user registration</strong>-->
+<!--                                <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">Kasun Perera joined as Farmer</p>-->
+<!--                            </div>-->
+<!--                            <span style="font-size: 0.8rem; color: #6b7280;">2 hours ago</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div style="padding: 1rem 0; border-bottom: 1px solid #f3f4f6;">-->
+<!--                        <div style="display: flex; justify-content: space-between; align-items: center;">-->
+<!--                            <div>-->
+<!--                                <strong>Notice posted</strong>-->
+<!--                                <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">Power outage alert published</p>-->
+<!--                            </div>-->
+<!--                            <span style="font-size: 0.8rem; color: #6b7280;">4 hours ago</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div style="padding: 1rem 0; border-bottom: 1px solid #f3f4f6;">-->
+<!--                        <div style="display: flex; justify-content: space-between; align-items: center;">-->
+<!--                            <div>-->
+<!--                                <strong>Job application</strong>-->
+<!--                                <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">5 applications for Farm Assistant position</p>-->
+<!--                            </div>-->
+<!--                            <span style="font-size: 0.8rem; color: #6b7280;">6 hours ago</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div style="padding: 1rem 0;">-->
+<!--                        <div style="display: flex; justify-content: space-between; align-items: center;">-->
+<!--                            <div>-->
+<!--                                <strong>Health update</strong>-->
+<!--                                <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">Vaccination drive announcement</p>-->
+<!--                            </div>-->
+<!--                            <span style="font-size: 0.8rem; color: #6b7280;">1 day ago</span>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="card" style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">-->
+<!--                <h3>System Status</h3>-->
+<!--                <div style="display: grid; gap: 1rem; margin-top: 1rem;">-->
+<!--                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f0fdf4; border-radius: 8px;">-->
+<!--                        <span>Server Status</span>-->
+<!--                        <span style="color: #10b981; font-weight: 600;">✓ Online</span>-->
+<!--                    </div>-->
+<!--                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f0fdf4; border-radius: 8px;">-->
+<!--                        <span>Database</span>-->
+<!--                        <span style="color: #10b981; font-weight: 600;">✓ Connected</span>-->
+<!--                    </div>-->
+<!--                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #fffbeb; border-radius: 8px;">-->
+<!--                        <span>Storage Usage</span>-->
+<!--                        <span style="color: #f59e0b; font-weight: 600;">⚠ 78% Used</span>-->
+<!--                    </div>-->
+<!--                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: #f0fdf4; border-radius: 8px;">-->
+<!--                        <span>Last Backup</span>-->
+<!--                        <span style="color: #10b981; font-weight: 600;">✓ 2 hours ago</span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--</main>-->
+
+<!--&lt;!&ndash; Toast Notifications &ndash;&gt;-->
+<!--<div id="toastContainer" class="toast-container"></div>-->
+
+<!--<script src="js/auth.js"></script>-->
+<!--<script src="js/admin.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Notices | GramaConnect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f9fafb;
+            margin: 0;
+        }
+        .navbar {
+            background: #2563eb;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar h1 { margin: 0; font-size: 1.5rem; }
+        .main-container {
+            padding: 2rem;
+            max-width: 1100px;
+            margin: auto;
+        }
+        .card {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #111827;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        button:hover {
+            background: #1e40af;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        th {
+            background: #f3f4f6;
+            font-weight: 600;
+        }
+        .actions button {
+            margin-right: 0.5rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+        .btn-secondary { background: #6b7280; }
+        .btn-danger { background: #dc2626; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <h1>GramaConnect Admin</h1>
+    <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+</nav>
+
+<main class="main-container">
+
+    <!-- Add New Notice -->
+    <div class="card">
+        <h3>Add New Notice</h3>
+        <form id="noticeForm">
+            <div class="form-group">
+                <label for="noticeTitle">Notice Title</label>
+                <input type="text" id="noticeTitle" name="title" placeholder="e.g. Power Outage Alert" required>
+            </div>
+            <div class="form-group">
+                <label for="noticeCategory">Category</label>
+                <select id="noticeCategory" name="category" required>
+                    <option value="">-- Select Category --</option>
+                    <option value="General">General</option>
+                    <option value="Meeting">Meeting</option>
+                    <option value="Health">Health</option>
+                    <option value="Farming">Farming</option>
+                    <option value="Education">Education</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="noticeContent">Content</label>
+                <textarea id="noticeContent" name="content" rows="4" placeholder="Write notice details..." required></textarea>
+            </div>
+            <button type="submit">Publish Notice</button>
+        </form>
+    </div>
+
+    <!-- Manage Notices -->
+    <div class="card">
+        <h3>Manage Notices</h3>
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Date Posted</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="noticeTable">
+            <tr>
+                <td>Power Outage in Village</td>
+                <td>General</td>
+                <td>2025-09-21</td>
+                <td class="actions">
+                    <button class="btn-secondary">Edit</button>
+                    <button class="btn-danger">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Fertilizer Distribution</td>
+                <td>Farming</td>
+                <td>2025-09-20</td>
+                <td class="actions">
+                    <button class="btn-secondary">Edit</button>
+                    <button class="btn-danger">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</main>
+
+<script>
+    // admin-notices.js
+
+    // Select DOM elements
+    const noticeForm = document.getElementById("noticeForm");
+    const noticeTable = document.getElementById("noticeTable");
+
+    // Load notices from localStorage (or empty array if none)
+    let notices = JSON.parse(localStorage.getItem("notices")) || [];
+
+    // Render notices into table
+    function renderNotices() {
+        noticeTable.innerHTML = ""; // Clear old rows
+
+        if (notices.length === 0) {
+            noticeTable.innerHTML = `<tr><td colspan="4" style="text-align:center; color:gray;">No notices yet</td></tr>`;
+            return;
+        }
+
+        notices.forEach((notice, index) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+            <td>${notice.title}</td>
+            <td>${notice.category}</td>
+            <td>${notice.date}</td>
+            <td class="actions">
+                <button class="btn-secondary" onclick="editNotice(${index})">Edit</button>
+                <button class="btn-danger" onclick="deleteNotice(${index})">Delete</button>
+            </td>
+        `;
+
+            noticeTable.appendChild(row);
+        });
+    }
+
+    // Add new notice
+    noticeForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const title = document.getElementById("noticeTitle").value.trim();
+        const category = document.getElementById("noticeCategory").value;
+        const content = document.getElementById("noticeContent").value.trim();
+
+        if (!title || !category || !content) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        const newNotice = {
+            title,
+            category,
+            content,
+            date: new Date().toISOString().split("T")[0] // YYYY-MM-DD
+        };
+
+        notices.push(newNotice);
+        localStorage.setItem("notices", JSON.stringify(notices));
+
+        renderNotices();
+        noticeForm.reset();
+        alert("Notice added successfully!");
+    });
+
+    // Edit notice
+    window.editNotice = function (index) {
+        const notice = notices[index];
+
+        // Pre-fill form
+        document.getElementById("noticeTitle").value = notice.title;
+        document.getElementById("noticeCategory").value = notice.category;
+        document.getElementById("noticeContent").value = notice.content;
+
+        // Remove old entry
+        notices.splice(index, 1);
+        localStorage.setItem("notices", JSON.stringify(notices));
+        renderNotices();
+    };
+
+    // Delete notice
+    window.deleteNotice = function (index) {
+        if (confirm("Are you sure you want to delete this notice?")) {
+            notices.splice(index, 1);
+            localStorage.setItem("notices", JSON.stringify(notices));
+            renderNotices();
+        }
+    };
+
+    // Initial render
+    renderNotices();
+
+</script>
+</body>
+</html>

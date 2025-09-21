@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice Board - GramaConnect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <h1>GramaConnect</h1>
+            <span class="tagline">ගම් සම්බන්ධතාව</span>
+        </div>
+        <div class="nav-menu">
+            <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Container -->
+<main class="main-container">
+    <section class="screen active module-screen">
+        <div class="module-header">
+            <a href="dashboard.html" class="back-btn">← Back</a>
+            <h2>Village Notice Board</h2>
+            <button class="btn btn-primary add-notice-btn admin-only">+ Add Notice</button>
+        </div>
+
+        <div class="notices-container">
+            <div class="notice-item priority-high">
+                <div class="notice-header">
+                    <span class="notice-category">Emergency</span>
+                    <span class="notice-date">Today, 2:30 PM</span>
+                </div>
+                <h3>Power Outage Alert</h3>
+                <p>Scheduled power outage from 6 PM to 10 PM today in areas 1-5. Please prepare accordingly.</p>
+                <p class="sinhala">අද සවස 6 සිට රාත්‍රී 10 දක්වා 1-5 ප්‍රදේශවල විදුලිය නවතා තබන්නට නියමිතයි.</p>
+            </div>
+
+            <div class="notice-item priority-medium">
+                <div class="notice-header">
+                    <span class="notice-category">Community</span>
+                    <span class="notice-date">Yesterday</span>
+                </div>
+                <h3>Village Council Meeting</h3>
+                <p>Monthly village council meeting on Sunday, 3 PM at the community center.</p>
+                <p class="sinhala">ඉරිදා දින පස්වරු 3ට ප්‍රජා මධ්‍යස්ථානයේදී මාසික ගම් සභා රැස්වීම.</p>
+            </div>
+
+            <div class="notice-item priority-low">
+                <div class="notice-header">
+                    <span class="notice-category">Agriculture</span>
+                    <span class="notice-date">2 days ago</span>
+                </div>
+                <h3>Fertilizer Distribution</h3>
+                <p>Subsidized fertilizer distribution starts next Monday at the agricultural office.</p>
+                <p class="sinhala">ලබන සඳුදා කෘෂිකර්ම කාර්යාලයේදී සහනදායී පොහොර බෙදා හැරීම ආරම්භ වේ.</p>
+            </div>
+
+            <div class="notice-item priority-medium">
+                <div class="notice-header">
+                    <span class="notice-category">Health</span>
+                    <span class="notice-date">3 days ago</span>
+                </div>
+                <h3>Medical Camp</h3>
+                <p>Free medical checkup camp next Friday from 9 AM to 4 PM at the village hall.</p>
+                <p class="sinhala">ලබන සිකුරාදා උදේ 9 සිට සවස 4 දක්වා ගම් සභාවේ නොමිලේ වෛද්‍ය පරීක්ෂණ කදවුර.</p>
+            </div>
+
+            <div class="notice-item priority-low">
+                <div class="notice-header">
+                    <span class="notice-category">Education</span>
+                    <span class="notice-date">1 week ago</span>
+                </div>
+                <h3>Computer Classes</h3>
+                <p>Basic computer literacy classes starting next month. Registration open for all ages.</p>
+                <p class="sinhala">ලබන මාසයේ සිට මූලික පරිගණක දැනුම පන්ති ආරම්භ වේ. සියලු වයස්වල අයට ලියාපදිංචි විය හැක.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Toast Notifications -->
+<div id="toastContainer" class="toast-container"></div>
+<script>
+    // notices.js
+
+    const noticesContainer = document.querySelector(".notices-container");
+
+    // Load notices from localStorage (or empty array if none)
+    let notices = JSON.parse(localStorage.getItem("notices")) || [];
+
+    // Function to render notices
+    function renderNoticeBoard() {
+        noticesContainer.innerHTML = ""; // Clear old notices
+
+        if (notices.length === 0) {
+            noticesContainer.innerHTML = `<p style="text-align:center; color:gray;">No notices available</p>`;
+            return;
+        }
+
+        notices.forEach((notice) => {
+            const noticeDiv = document.createElement("div");
+            noticeDiv.className = `notice-item priority-${getPriority(notice.category)}`;
+
+            noticeDiv.innerHTML = `
+            <div class="notice-header">
+                <span class="notice-category">${notice.category}</span>
+                <span class="notice-date">${notice.date}</span>
+            </div>
+            <h3>${notice.title}</h3>
+            <p>${notice.content}</p>
+        `;
+
+            noticesContainer.appendChild(noticeDiv);
+        });
+    }
+
+    // Helper: assign priority class based on category
+    function getPriority(category) {
+        switch (category.toLowerCase()) {
+            case "emergency":
+            case "health":
+                return "high";
+            case "community":
+            case "meeting":
+                return "medium";
+            default:
+                return "low";
+        }
+    }
+
+    // Initial render
+    renderNoticeBoard();
+
+</script>
+</body>
+</html>

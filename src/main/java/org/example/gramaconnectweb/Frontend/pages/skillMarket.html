@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Market - GramaConnect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <h1>GramaConnect</h1>
+            <span class="tagline">ගම් සම්බන්ධතාව</span>
+        </div>
+        <div class="nav-menu">
+            <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Container -->
+<main class="main-container">
+    <section class="screen active module-screen">
+        <div class="module-header">
+            <a href="dashboard.html" class="back-btn">← Back</a>
+            <h2>Skills Market</h2>
+        </div>
+
+        <div class="content" style="display: grid; gap: 2rem;">
+            <div class="card" style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <div class="card-icon" style="font-size: 2rem; margin-bottom: 1rem;">🛍️</div>
+                <h3>Local Talents & Products</h3>
+                <p>Discover amazing skills and products from your community</p>
+                <ul style="list-style: none; padding: 0; margin-top: 1rem;" id="talentsList">
+                    <li style="padding: 1rem 0; border-bottom: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="font-size: 1.5rem; margin-right: 1rem;">🧵</span>
+                            <div>
+                                <strong>Traditional Handicrafts</strong>
+                                <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">Handwoven baskets and mats</p>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-weight: 600; color: #12810a;">Rs. 1,200</span>
+                            <button class="btn btn-outline" style="margin-left: 1rem; padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="contactSeller('Handicrafts')">Contact</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem 0; border-bottom: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="font-size: 1.5rem; margin-right: 1rem;">🍯</span>
+                            <div>
+                                <strong>Pure Organic Honey</strong>
+                                <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">Fresh from local beehives</p>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-weight: 600; color: #12810a;">Rs. 800/bottle</span>
+                            <button class="btn btn-outline" style="margin-left: 1rem; padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="contactSeller('Honey')">Contact</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem 0; border-bottom: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="font-size: 1.5rem; margin-right: 1rem;">🎨</span>
+                            <div>
+                                <strong>Art & Painting Lessons</strong>
+                                <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">Learn traditional and modern art</p>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-weight: 600; color: #12810a;">Rs. 1,500/session</span>
+                            <button class="btn btn-outline" style="margin-left: 1rem; padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="contactSeller('Art Lessons')">Contact</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem 0; border-bottom: 1px solid #f3f4f6; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="font-size: 1.5rem; margin-right: 1rem;">🥘</span>
+                            <div>
+                                <strong>Traditional Cooking Classes</strong>
+                                <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">Learn authentic Sri Lankan recipes</p>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-weight: 600; color: #12810a;">Rs. 2,000/class</span>
+                            <button class="btn btn-outline" style="margin-left: 1rem; padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="contactSeller('Cooking Classes')">Contact</button>
+                        </div>
+                    </li>
+                    <li style="padding: 1rem 0; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center;">
+                            <span style="font-size: 1.5rem; margin-right: 1rem;">🌿</span>
+                            <div>
+                                <strong>Herbal Medicine Consultation</strong>
+                                <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">Traditional Ayurvedic treatments</p>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-weight: 600; color: #12810a;">Rs. 1,000/consultation</span>
+                            <button class="btn btn-outline" style="margin-left: 1rem; padding: 0.5rem 1rem; font-size: 0.8rem;" onclick="contactSeller('Herbal Medicine')">Contact</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card" style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <div class="card-icon" style="font-size: 2rem; margin-bottom: 1rem;">💼</div>
+                <h3>Sell Your Skill or Product</h3>
+                <p>Share your talents with the community and earn income</p>
+                <form style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;" id="skillForm">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="skillCategory" required>
+                            <option value="">Select category</option>
+                            <option value="handicrafts">Handicrafts</option>
+                            <option value="food">Food & Beverages</option>
+                            <option value="services">Services</option>
+                            <option value="education">Education & Training</option>
+                            <option value="agriculture">Agriculture Products</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Skill/Product Name</label>
+                        <input type="text" id="skillName" placeholder="e.g., Handwoven Baskets" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="skillDescription" placeholder="Describe your skill or product..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (Rs)</label>
+                        <input type="number" id="skillPrice" placeholder="Enter price" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Information</label>
+                        <input type="text" id="skillContact" placeholder="Phone number or email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post Your Skill</button>
+                </form>
+            </div>
+
+            <div class="card" style="background: white; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <div class="card-icon" style="font-size: 2rem; margin-bottom: 1rem;">📊</div>
+                <h3>Market Statistics</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                    <div style="text-align: center; padding: 1rem; background: #f0fdf4; border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: #12810a;">47</div>
+                        <div style="font-size: 0.9rem; color: #6b7280;">Active Sellers</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: #eff6ff; border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: #3b82f6;">156</div>
+                        <div style="font-size: 0.9rem; color: #6b7280;">Products Listed</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: #fffbeb; border-radius: 8px;">
+                        <div style="font-size: 1.5rem; font-weight: 700; color: #f59e0b;">89</div>
+                        <div style="font-size: 0.9rem; color: #6b7280;">This Month Sales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Toast Notifications -->
+<div id="toastContainer" class="toast-container"></div>
+
+
+<!--<script>-->
+<!--    const talentsList = document.getElementById('talentsList');-->
+
+<!--    // Function to display a skill in the list-->
+<!--    function appendSkill(skill) {-->
+<!--        const li = document.createElement('li');-->
+<!--        li.classList.add('db-skill'); // mark as DB item-->
+<!--        li.style.cssText = 'padding:1rem 0; border-bottom:1px solid #f3f4f6; display:flex; justify-content:space-between; align-items:center;';-->
+<!--        li.innerHTML = `-->
+<!--            <div style="display:flex;align-items:center;">-->
+<!--                <span style="font-size:1.5rem; margin-right:1rem;">🛍️</span>-->
+<!--                <div>-->
+<!--                    <strong>${skill.name}</strong>-->
+<!--                    <p style="margin:0; font-size:0.9rem; color:#6b7280;">${skill.description}</p>-->
+<!--                    <p style="margin:0; font-size:0.8rem; color:#3b82f6;">Contact: ${skill.contact}</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div style="text-align:right;">-->
+<!--                <span style="font-weight:600; color:#12810a;">Rs. ${skill.price}</span>-->
+<!--            </div>-->
+<!--        `;-->
+<!--        talentsList.appendChild(li);-->
+<!--    }-->
+
+<!--    // Load all skills from backend-->
+<!--    function loadSkills() {-->
+<!--        const token = localStorage.getItem('jwtToken');-->
+<!--        fetch('http://localhost:8080/api/skills', {-->
+<!--            headers: { 'Authorization': 'Bearer ' + token }-->
+<!--        })-->
+<!--            .then(res => {-->
+<!--                if (!res.ok) throw new Error('Error fetching skills');-->
+<!--                return res.json();-->
+<!--            })-->
+<!--            .then(skills => {-->
+<!--                console.log("Fetched skills:", skills); // Debugging-->
+<!--                // Remove only previously loaded DB items-->
+<!--                document.querySelectorAll('.db-skill').forEach(el => el.remove());-->
+<!--                // Add fresh DB items-->
+<!--                skills.forEach(skill => appendSkill(skill));-->
+<!--            })-->
+<!--            .catch(err => console.error(err));-->
+<!--    }-->
+
+<!--    // Submit new skill-->
+<!--    document.getElementById('skillForm').addEventListener('submit', function(e){-->
+<!--        e.preventDefault();-->
+
+<!--        const skill = {-->
+<!--            category: document.getElementById('skillCategory').value,-->
+<!--            name: document.getElementById('skillName').value,-->
+<!--            description: document.getElementById('skillDescription').value,-->
+<!--            price: parseFloat(document.getElementById('skillPrice').value),-->
+<!--            contact: document.getElementById('skillContact').value-->
+<!--        };-->
+
+<!--        const token = localStorage.getItem('jwtToken');-->
+
+<!--        fetch('http://localhost:8080/api/skills', {-->
+<!--            method: 'POST',-->
+<!--            headers: {-->
+<!--                'Content-Type': 'application/json',-->
+<!--                'Authorization': 'Bearer ' + token-->
+<!--            },-->
+<!--            body: JSON.stringify(skill)-->
+<!--        })-->
+<!--            .then(res => {-->
+<!--                if (!res.ok) throw new Error('Failed to post skill');-->
+<!--                return res.json();-->
+<!--            })-->
+<!--            .then(data => {-->
+<!--                alert('Skill posted successfully!');-->
+<!--                document.getElementById('skillForm').reset();-->
+<!--                appendSkill(data); // dynamically add the newly posted skill2.-->
+<!--            })-->
+<!--            .catch(err => console.error(err));-->
+<!--    });-->
+
+<!--    // Load skills on page load-->
+<!--    document.addEventListener('DOMContentLoaded', loadSkills);-->
+<!--</script>-->
+<script>
+    const talentsList = document.getElementById('talentsList');
+
+    // Function to display a skill in the list
+    function appendSkill(skill) {
+        const li = document.createElement('li');
+        li.classList.add('db-skill');
+        li.dataset.id = skill.id; // store skill ID for updates/deletes
+        li.style.cssText = 'padding:1rem 0; border-bottom:1px solid #f3f4f6; display:flex; justify-content:space-between; align-items:center;';
+
+        li.innerHTML = `
+            <div style="display:flex;align-items:center; gap: 1rem;">
+                <span style="font-size:1.5rem;">🛍️</span>
+                <div>
+                    <strong class="skill-name">${skill.name}</strong>
+                    <p class="skill-desc" style="margin:0; font-size:0.9rem; color:#6b7280;">${skill.description}</p>
+                    <p class="skill-contact" style="margin:0; font-size:0.8rem; color:#3b82f6;">Contact: ${skill.contact}</p>
+                    <p class="skill-price" style="margin:0; font-weight:600; color:#12810a;">Rs. ${skill.price}</p>
+                </div>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+                <button class="btn-update" style="padding:0.3rem 0.6rem;">Update</button>
+                <button class="btn-delete" style="padding:0.3rem 0.6rem;">Delete</button>
+            </div>
+        `;
+
+        // DELETE functionality
+        li.querySelector('.btn-delete').addEventListener('click', () => {
+            const token = localStorage.getItem('jwtToken');
+            fetch(`http://localhost:8080/api/skills/${skill.id}`, {
+                method: 'DELETE',
+                headers: { 'Authorization': 'Bearer ' + token }
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error('Failed to delete skill');
+                    li.remove();
+                    alert('Skill deleted successfully!');
+                })
+                .catch(err => console.error(err));
+        });
+
+        // UPDATE functionality
+        li.querySelector('.btn-update').addEventListener('click', () => {
+            const newName = prompt("Enter new name:", skill.name);
+            const newDesc = prompt("Enter new description:", skill.description);
+            const newPrice = prompt("Enter new price:", skill.price);
+            const newContact = prompt("Enter new contact info:", skill.contact);
+
+            if (!newName || !newDesc || !newPrice || !newContact) return;
+
+            const updatedSkill = {
+                name: newName,
+                description: newDesc,
+                price: parseFloat(newPrice),
+                contact: newContact,
+                category: skill.category
+            };
+
+            const token = localStorage.getItem('jwtToken');
+            fetch(`http://localhost:8080/api/skills/${skill.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(updatedSkill)
+            })
+                .then(res => {
+                    if (!res.ok) throw new Error('Failed to update skill');
+                    return res.json();
+                })
+                .then(data => {
+                    // update the displayed skill
+                    li.querySelector('.skill-name').textContent = data.name;
+                    li.querySelector('.skill-desc').textContent = data.description;
+                    li.querySelector('.skill-price').textContent = `Rs. ${data.price}`;
+                    li.querySelector('.skill-contact').textContent = `Contact: ${data.contact}`;
+                    alert('Skill updated successfully!');
+                })
+                .catch(err => console.error(err));
+        });
+
+        talentsList.appendChild(li);
+    }
+
+    // Load all skills from backend
+    function loadSkills() {
+        const token = localStorage.getItem('jwtToken');
+        fetch('http://localhost:8080/api/skills', {
+            headers: { 'Authorization': 'Bearer ' + token }
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('Error fetching skills');
+                return res.json();
+            })
+            .then(skills => {
+                document.querySelectorAll('.db-skill').forEach(el => el.remove());
+                skills.forEach(skill => appendSkill(skill));
+            })
+            .catch(err => console.error(err));
+    }
+
+    // Submit new skill
+    document.getElementById('skillForm').addEventListener('submit', function(e){
+        e.preventDefault();
+
+        const skill = {
+            category: document.getElementById('skillCategory').value,
+            name: document.getElementById('skillName').value,
+            description: document.getElementById('skillDescription').value,
+            price: parseFloat(document.getElementById('skillPrice').value),
+            contact: document.getElementById('skillContact').value
+        };
+
+        const token = localStorage.getItem('jwtToken');
+
+        fetch('http://localhost:8080/api/skills', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(skill)
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to post skill');
+                return res.json();
+            })
+            .then(data => {
+                alert('Skill posted successfully!');
+                document.getElementById('skillForm').reset();
+                appendSkill(data);
+            })
+            .catch(err => console.error(err));
+    });
+
+    // Load skills on page load
+    document.addEventListener('DOMContentLoaded', loadSkills);
+</script>
+
+
+</body>
+</html>

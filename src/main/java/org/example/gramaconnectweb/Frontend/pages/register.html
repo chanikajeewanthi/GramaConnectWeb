@@ -1,0 +1,347 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Register - GramaConnect</title>-->
+<!--    <link rel="stylesheet" href="../css/styles.css">-->
+<!--    <link rel="preconnect" href="https://fonts.googleapis.com">-->
+<!--    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash; Navigation &ndash;&gt;-->
+<!--<nav class="navbar">-->
+<!--    <div class="nav-container">-->
+<!--        <div class="nav-brand">-->
+<!--            <h1>GramaConnect</h1>-->
+<!--            <span class="tagline">ගම් සම්බන්ධතාව</span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--&lt;!&ndash; Main Container &ndash;&gt;-->
+<!--<main class="main-container">-->
+<!--    <section class="screen active">-->
+<!--        <div class="login-container">-->
+<!--            <div class="login-header">-->
+<!--                <h2>Create Account</h2>-->
+<!--                <p>Join the GramaConnect community</p>-->
+<!--            </div>-->
+
+<!--            <form class="login-form" id="registerForm">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="regUsername">Username / ප්‍රයෝජක නම</label>-->
+<!--                    <input type="text" id="regUsername" name="username" required>-->
+<!--                </div>-->
+
+<!--                <div class="form-group">-->
+<!--                    <label for="regPassword">Password / මුරපදය</label>-->
+<!--                    <input type="password" id="regPassword" name="password" required>-->
+<!--                </div>-->
+
+<!--                <div class="form-group">-->
+<!--                    <label for="regRole">Role / භූමිකාව</label>-->
+<!--                    <select id="regRole" name="role" required>-->
+<!--                        <option value="villager">Villager / ගම්වැසියා</option>-->
+<!--                        <option value="farmer">Farmer / ගොවියා</option>-->
+<!--                        <option value="teacher">Teacher / ගුරුවරයා</option>-->
+<!--                        <option value="health-worker">Health Worker / සෞඛ්‍ය සේවකයා</option>-->
+<!--                    </select>-->
+<!--                </div>-->
+
+<!--                <button type="submit" class="btn btn-primary">Register / ලියාපදිංචි වන්න</button>-->
+<!--            </form>-->
+
+<!--            <div class="login-footer">-->
+<!--                <p>Already have an account? <a href="index.html">Login here / ප්‍රවේශ වන්න</a></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--</main>-->
+
+<!--&lt;!&ndash; Toast Notifications &ndash;&gt;-->
+<!--<div id="toastContainer" class="toast-container"></div>-->
+
+<!--<script src="js/auth.js"></script>-->
+<!--<script src="js/register.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GramaConnect - Smart Village Platform</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body, html { height:100%; font-family:'Inter', sans-serif; background:#f0f0f0; }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url('../image/Nature.jpg') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+        .hero::before {
+            content:'';
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.45);
+            z-index:1;
+        }
+        .hero-content {
+            position: relative; z-index:2;
+        }
+        .hero-content h1 { font-size:3rem; margin-bottom:15px; }
+        .hero-content p { font-size:1.2rem; margin-bottom:30px; color: rgba(255,255,255,0.9);}
+        .btn-get-started {
+            padding: 14px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-get-started:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: #4ade80;
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .modal {
+            display:none;
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            z-index:1000;
+        }
+        .modal-content {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 360px;
+            max-width: 90%;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            text-align:center;
+            color:#fff;
+            position: relative;
+            animation: slideDown 0.4s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity:0; }
+            to { transform: translateY(0); opacity:1; }
+        }
+        .close-btn {
+            position:absolute;
+            top:15px; right:20px;
+            font-size:1.5rem;
+            cursor:pointer;
+        }
+
+        /* Form */
+        .modal-content .register-form .form-group {
+            margin-bottom:20px;
+            text-align:left;
+        }
+        .modal-content .register-form input,
+        .modal-content .register-form select {
+            width:100%;
+            padding:10px 12px;
+            border-radius:8px;
+            border:none;
+            outline:none;
+            background: rgba(255,255,255,0.15);
+            color:#fff;
+        }
+        .modal-content .register-form input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Login Button */
+        .btn-register {
+            width:100%;
+            padding:12px;
+            border:2px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.1);
+            color:#fff;
+            font-weight:600;
+            border-radius:50px;
+            cursor:pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-register:hover {
+            background: rgba(255,255,255,0.2);
+            border-color:#4ade80;
+        }
+
+        /* Register Link */
+        .login-link { margin-top:15px; font-size:0.9rem; }
+        .login-link a { color:#4ade80; text-decoration:none; }
+        .login-link a:hover { text-decoration:underline; }
+
+        /* Responsive */
+        @media(max-width:480px){
+            .hero-content h1 { font-size:2rem; }
+            .hero-content p { font-size:1rem; }
+            .btn-get-started { font-size:1rem; padding:12px 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Empowering Villages Digitally</h1>
+        <p>Connecting rural communities to modern solutions for agriculture, health, education, and job opportunities.</p>
+        <button class="btn-get-started">Get Started</button>
+    </div>
+</section>
+
+<!-- Modal Login Card -->
+<div id="registerModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <h2>Welcome to GramaConnect</h2>
+        <p>Connect villages, empower communities</p>
+
+        <form id="modalRegisterForm" class="register-form">
+            <div class="form-group">
+                <label for="modalUsername">Username</label>
+                <input type="text" id="modalUsername" name="username" placeholder="Enter username" required>
+            </div>
+            <div class="form-group">
+                <label for="modalEmail">Email</label>
+                <input type="text" id="modalEmail" name="email" placeholder="Enter email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="modalPassword">Password</label>
+                <input type="password" id="modalPassword" name="password" placeholder="Enter password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="modalRole">Role</label>
+                <select id="modalRole" name="userRole" required>
+                    <option value="">Select Role</option>
+                    <option value="villager">Villager</option>
+                    <option value="farmer">Farmer</option>
+                    <option value="health-worker">Health Worker</option>
+                    <option value="teacher">Teacher</option>
+
+                </select>
+            </div>
+
+            <button type="submit" class="btn-register">Register</button>
+        </form>
+
+        <p class="login-link">Already have a account <a href="index.html">Login here</a></p>
+    </div>
+</div>
+
+<script>
+    // Open Modal
+    const getStartedBtn = document.querySelector('.btn-get-started');
+    const loginModal = document.getElementById('registerModal');
+    const closeModal = document.getElementById('closeModal');
+
+    getStartedBtn.addEventListener('click', () => { registerModal.style.display = 'flex'; });
+    closeModal.addEventListener('click', () => { registerModal.style.display = 'none'; });
+    window.addEventListener('click', (e) => { if(e.target === registerModal) registerModal.style.display = 'none'; });
+</script>
+<script>
+    // document.getElementById("modalRegisterForm").addEventListener("submit", async function(e) {
+    //     e.preventDefault();
+    //
+    //     // Collect form values
+    //     const username = document.getElementById("modalUsername").value;
+    //     const email = document.getElementById("modalEmail").value;
+    //     const password = document.getElementById("modalPassword").value;
+    //     const role = document.getElementById("modalRole").value;
+    //
+    //     // Prepare request body
+    //     const userData = { username, email, password, role };
+    //
+    //     try {
+    //         // Send POST request to backend
+    //         const response = await fetch("http://localhost:8080/auth/register", {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify(userData)
+    //         });
+    //
+    //         if (response.ok) {
+    //             alert("✅ Registration successful! Please login.");
+    //             window.location.href = "index.html"; // redirect to login
+    //         } else {
+    //             const error = await response.text();
+    //             alert("❌ Registration failed: " + error);
+    //         }
+    //     } catch (err) {
+    //         console.error("Error:", err);
+    //         alert("⚠️ Something went wrong. Please try again.");
+    //     }
+    // });
+
+    document.getElementById("modalRegisterForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById("modalUsername").value;
+        const email = document.getElementById("modalEmail").value;
+        const password = document.getElementById("modalPassword").value;
+
+        // Multi-role select example: allow multiple selection
+        const selectedRoles = Array.from(document.getElementById("modalRole").selectedOptions)
+            .map(option => option.value);
+
+        const userData = { username, email, password, roles: selectedRoles };
+
+        try {
+            const response = await fetch("http://localhost:8080/auth/register", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(userData)
+            });
+
+            if (response.ok) {
+                alert("✅ Registration successful! Please login.");
+                window.location.href = "index.html";
+            } else {
+                const error = await response.text();
+                alert("❌ Registration failed: " + error);
+            }
+        } catch (err) {
+            console.error("Error:", err);
+            alert("⚠️ Something went wrong. Please try again.");
+        }
+    });
+
+</script>
+
+
+</body>
+</html>

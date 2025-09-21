@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal - GramaConnect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <h1>GramaConnect</h1>
+            <span class="tagline">ගම් සම්බන්ධතාව</span>
+        </div>
+        <div class="nav-menu">
+            <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Container -->
+<main class="main-container">
+    <section class="screen active module-screen">
+        <div class="module-header">
+            <a href="dashboard.html" class="back-btn">← Back</a>
+            <h2>Job Portal</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Search jobs..." id="jobSearch">
+                <button class="btn btn-primary" onclick="searchJobs()">Search</button>
+            </div>
+        </div>
+
+        <div class="job-filters">
+            <button class="filter-btn active" data-filter="all">All Jobs</button>
+            <button class="filter-btn" data-filter="agriculture">Agriculture</button>
+            <button class="filter-btn" data-filter="handicrafts">Handicrafts</button>
+            <button class="filter-btn" data-filter="services">Services</button>
+            <button class="filter-btn" data-filter="technology">Technology</button>
+        </div>
+
+        <div class="jobs-list" id="jobsList">
+            <div class="job-card" data-category="agriculture">
+                <div class="job-header">
+                    <h3>Farm Assistant</h3>
+                    <span class="job-type">Full-time</span>
+                </div>
+                <p class="job-description">Help with rice cultivation and vegetable farming. Experience preferred but training provided. Must be physically fit.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Nearby Village</span>
+                    <span class="job-salary">💰 Rs. 35,000/month</span>
+                </div>
+                <button class="btn btn-outline" onclick="applyJob('Farm Assistant')">Apply Now</button>
+            </div>
+
+            <div class="job-card" data-category="handicrafts">
+                <div class="job-header">
+                    <h3>Handloom Weaver</h3>
+                    <span class="job-type">Contract</span>
+                </div>
+                <p class="job-description">Create traditional handloom products. Work from home opportunity. Experience in traditional weaving required.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Work from Home</span>
+                    <span class="job-salary">💰 Rs. 500-800/piece</span>
+                </div>
+                <button class="btn btn-outline" onclick="applyJob('Handloom Weaver')">Apply Now</button>
+            </div>
+
+            <div class="job-card" data-category="services">
+                <div class="job-header">
+                    <h3>Village Store Assistant</h3>
+                    <span class="job-type">Part-time</span>
+                </div>
+                <p class="job-description">Assist customers and manage inventory at local store. Good communication skills needed. Basic math skills required.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Village Center</span>
+                    <span class="job-salary">💰 Rs. 25,000/month</span>
+                </div>
+                <button class="btn btn-outline" onclick="applyJob('Village Store Assistant')">Apply Now</button>
+            </div>
+
+            <div class="job-card" data-category="agriculture">
+                <div class="job-header">
+                    <h3>Organic Vegetable Grower</h3>
+                    <span class="job-type">Contract</span>
+                </div>
+                <p class="job-description">Grow organic vegetables for local market. Training provided on organic farming methods.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Village Farm</span>
+                    <span class="job-salary">💰 Rs. 40,000/month</span>
+                </div>
+                <button class="btn btn-outline" onclick="applyJob('Organic Vegetable Grower')">Apply Now</button>
+            </div>
+
+            <div class="job-card" data-category="handicrafts">
+                <div class="job-header">
+                    <h3>Pottery Maker</h3>
+                    <span class="job-type">Freelance</span>
+                </div>
+                <p class="job-description">Create traditional pottery items for local and tourist markets. Own tools preferred.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Craft Center</span>
+                    <span class="job-salary">💰 Rs. 300-600/item</span>
+                </div>
+                <button class="btn btn-outline" onclick="applyJob('Pottery Maker')">Apply Now</button>
+            </div>
+
+            <div class="job-card" data-category="services">
+                <div class="job-header">
+                    <h3>Village Tutor</h3>
+                    <span class="job-type">Part-time</span>
+                </div>
+                <p class="job-description">Teach primary school subjects to village children. Good knowledge of Sinhala and English required.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Community Center</span>
+                    <span class="job-salary">💰 Rs. 30,000/month</span>
+                </div>
+                <button class="btn btn-outline" onclick="applyJob('Village Tutor')">Apply Now</button>
+            </div>
+
+            <div class="job-card" data-category="technology">
+                <div class="job-header">
+                    <h3>Computer Operator</h3>
+                    <span class="job-type">Full-time</span>
+                </div>
+                <p class="job-description">Operate computer systems for village administrative work. Basic computer skills required.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Village Office</span>
+                    <span class="job-salary">💰 Rs. 45,000/month</span>
+                </div>
+                <button class="btn btn-outline" onclick="applyJob('Computer Operator')">Apply Now</button>
+            </div>
+
+            <div class="job-card" data-category="services">
+                <div class="job-header">
+                    <h3>Delivery Person</h3>
+                    <span class="job-type">Part-time</span>
+                </div>
+                <p class="job-description">Deliver goods within village area. Own motorcycle preferred. Flexible working hours.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Village Area</span>
+                    <span class="job-salary">💰 Rs. 20,000/month</span>
+                </div>
+                <button class="btn btn-outline" onclick="applyJob('Delivery Person')">Apply Now</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Toast Notifications -->
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="js/auth.js"></script>
+<script src="js/jobs.js"></script>
+</body>
+</html>

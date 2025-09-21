@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - GramaConnect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <h1>GramaConnect</h1>
+            <span class="tagline">ගම් සම්බන්ධතාව</span>
+        </div>
+        <div class="nav-menu">
+            <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<main class="main-container">
+    <section class="screen active">
+        <div class="dashboard-header">
+            <div class="user-info">
+                <h2 id="welcomeMessage">Welcome, User!</h2>
+                <p id="userRoleBadge" class="role-badge">Villager</p>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <a href="farmersCorner.html" class="dashboard-card" id="farmerCard" >
+                <div class="card-icon">🌾</div>
+                <h3>Farmer's Corner</h3>
+                <p>ගොවි කෙළවර</p>
+            </a>
+            <a href="skillMarket.html" class="dashboard-card" id="skillMarketCard">
+                <div class="card-icon">🛍️</div>
+                <h3>Skills Market</h3>
+                <p>කුසලතා වෙළඳපොළ</p>
+            </a>
+            <a href="noticeBoard.html" class="dashboard-card" id="noticeBoardCard">
+                <div class="card-icon">📢</div>
+                <h3>Village Notice Board</h3>
+                <p>ගම් නොඩිස් බෝඩ්</p>
+            </a>
+
+            <a href="jobPortal.html" class="dashboard-card" id="jobPortalCard">
+                <div class="card-icon">💼</div>
+                <h3>Job Portal</h3>
+                <p>රැකියා කටයුතු</p>
+            </a>
+
+            <a href="villageAcademy.html" class="dashboard-card" id="villageAcademyCard">
+                <div class="card-icon">📚</div>
+                <h3>Village Academy</h3>
+                <p>ගම් අධ්‍යාපනය</p>
+            </a>
+
+                        <a href="admin.html" class="dashboard-card" id="adminCard" style="display: none;">
+                <div class="card-icon">⚙️</div>
+                <h3>Admin Dashboard</h3>
+                <p>පරිපාලන පුවරුව</p>
+            </a>
+
+            <a href="villageHealth.html" class="dashboard-card" id="healthCard" >
+                <div class="card-icon">🏥</div>
+                <h3>Village Health Watch</h3>
+                <p>ගම් සෞඛ්‍ය සේවය</p>
+            </a>
+
+
+
+
+        </div>
+    </section>
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        // The key to a successful connection: get the token
+        const token = localStorage.getItem("token");
+
+        // If no token, redirect to login
+        if (!token) {
+            console.warn("No token found. Redirecting to login page.");
+            window.location.href = "index.html";
+            return;
+        }
+
+        try {
+            // Send the request with the correct Authorization header
+            const token = localStorage.getItem("token");
+            const response = await fetch("http://localhost:8080/auth/me", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+
+
+            if (response.ok) {
+                // Success: Update the UI
+                const data = await response.json();
+                console.log("User data successfully loaded:", data);
+                document.getElementById("welcomeMessage").innerText = `Welcome, ${data.username}`;
+                document.getElementById("userRoleBadge").innerText = data.roles.join(", ");
+
+                // Dynamically show/hide cards
+                const roles = data.roles;
+                toggleRoleCard("adminCard", roles, "ROLE_ADMIN");
+                toggleRoleCard("healthCard", roles, "ROLE_HEALTH_WORKER");
+                toggleRoleCard("farmerCard", roles, "ROLE_FARMER");
+                toggleRoleCard("teacherCard", roles, "ROLE_TEACHER");
+                toggleRoleCard("villagerCard", roles, "ROLE_VILLAGER");
+
+            } else {
+                // Failure: Token is invalid or expired
+                console.error("Authentication failed. Response status:", response.status);
+                localStorage.removeItem("token");
+                alert("Session expired. Please log in again.");
+                window.location.href = "index.html";
+            }
+        } catch (error) {
+            // Network or server error
+            console.error("Error fetching user data:", error);
+            alert("Could not connect to the server.");
+        }
+
+        // Logout event listener
+        if (logoutBtn) {
+            logoutBtn.addEventListener("click", () => {
+                localStorage.removeItem("token");
+                window.location.href = "index.html";
+            });
+        }
+    });
+
+    // Helper function to toggle card visibility
+    function toggleRoleCard(cardId, roles, role) {
+        const card = document.getElementById(cardId);
+        if (card) {
+            card.style.display = roles.includes(role) ? "block" : "none";
+        }
+    }
+</script>
+</body>
+</html>

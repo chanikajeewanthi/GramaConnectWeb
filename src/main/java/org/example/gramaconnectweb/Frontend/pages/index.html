@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GramaConnect - Smart Village Platform</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body, html { height:100%; font-family:'Inter', sans-serif; background:#f0f0f0; }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            background: url('../image/nidhin-k-s-oG6GuEyqaeI-unsplash.jpg') center/cover no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+        .hero::before {
+            content:'';
+            position:absolute; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.45);
+            z-index:1;
+        }
+        .hero-content {
+            position: relative; z-index:2;
+        }
+        .hero-content h1 { font-size:3rem; margin-bottom:15px; }
+        .hero-content p { font-size:1.2rem; margin-bottom:30px; color: rgba(255,255,255,0.9);}
+        .btn-get-started {
+            padding: 14px 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50px;
+            backdrop-filter: blur(8px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-get-started:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: #4ade80;
+            transform: translateY(-3px);
+        }
+
+        /* Modal */
+        .modal {
+            display:none;
+            position:fixed;
+            top:0; left:0;
+            width:100%; height:100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            z-index:1000;
+        }
+        .modal-content {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 360px;
+            max-width: 90%;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            text-align:center;
+            color:#fff;
+            position: relative;
+            animation: slideDown 0.4s ease-out;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity:0; }
+            to { transform: translateY(0); opacity:1; }
+        }
+        .close-btn {
+            position:absolute;
+            top:15px; right:20px;
+            font-size:1.5rem;
+            cursor:pointer;
+        }
+
+        /* Form */
+        .modal-content .login-form .form-group {
+            margin-bottom:20px;
+            text-align:left;
+        }
+        .modal-content .login-form input,
+        .modal-content .login-form select {
+            width:100%;
+            padding:10px 12px;
+            border-radius:8px;
+            border:none;
+            outline:none;
+            background: rgba(255,255,255,0.15);
+            color:#fff;
+        }
+        .modal-content .login-form input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Login Button */
+        .btn-login {
+            width:100%;
+            padding:12px;
+            border:2px solid rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.1);
+            color:#fff;
+            font-weight:600;
+            border-radius:50px;
+            cursor:pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            background: rgba(255,255,255,0.2);
+            border-color:#4ade80;
+        }
+
+        /* Register Link */
+        .register-link { margin-top:15px; font-size:0.9rem; }
+        .register-link a { color:#4ade80; text-decoration:none; }
+        .register-link a:hover { text-decoration:underline; }
+
+        /* Responsive */
+        @media(max-width:480px){
+            .hero-content h1 { font-size:2rem; }
+            .hero-content p { font-size:1rem; }
+            .btn-get-started { font-size:1rem; padding:12px 28px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Empowering Villages Digitally</h1>
+        <p>Connecting rural communities to modern solutions for agriculture, health, education, and job opportunities.</p>
+        <button class="btn-get-started">Get Started</button>
+    </div>
+</section>
+
+<!-- Modal Login Card -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <h2>Welcome to GramaConnect</h2>
+        <p>Connect villages, empower communities</p>
+
+        <form id="modalLoginForm" class="login-form">
+            <div class="form-group">
+                <label for="modalEmail">Email</label>
+                <input type="text" id="modalEmail" name="email" placeholder="Enter email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="modalPassword">Password</label>
+                <input type="password" id="modalPassword" name="password" placeholder="Enter password" required>
+            </div>
+
+
+<!--            <div class="form-group">-->
+<!--                <label for="modalRole">Role</label>-->
+<!--                <select id="modalRole" name="userRole" required>-->
+<!--                    <option value="">Select Role</option>-->
+<!--                    <option value="villager">Villager</option>-->
+<!--                    <option value="farmer">Farmer</option>-->
+<!--                    <option value="health-worker">Health Worker</option>-->
+<!--                    <option value="teacher">Teacher</option>-->
+
+<!--                </select>-->
+<!--            </div>-->
+
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+
+        <p class="register-link">New user? <a href="register.html">Register here</a></p>
+    </div>
+</div>
+
+<script>
+    // Open Modal
+    const getStartedBtn = document.querySelector('.btn-get-started');
+    const loginModal = document.getElementById('loginModal');
+    const closeModal = document.getElementById('closeModal');
+
+    getStartedBtn.addEventListener('click', () => { loginModal.style.display = 'flex'; });
+    closeModal.addEventListener('click', () => { loginModal.style.display = 'none'; });
+    window.addEventListener('click', (e) => { if(e.target === loginModal) loginModal.style.display = 'none'; });
+</script>
+<!--<script>-->
+<!--   -->
+<!--&lt;!&ndash;    document.getElementById("modalLoginForm").addEventListener("submit", async function(e) {&ndash;&gt;-->
+<!--&lt;!&ndash;        e.preventDefault();&ndash;&gt;-->
+
+<!--&lt;!&ndash;        const email = document.getElementById("modalEmail").value;&ndash;&gt;-->
+<!--&lt;!&ndash;        const password = document.getElementById("modalPassword").value;&ndash;&gt;-->
+
+<!--&lt;!&ndash;        try {&ndash;&gt;-->
+<!--&lt;!&ndash;            const response = await fetch("http://localhost:8080/auth/login", {&ndash;&gt;-->
+<!--&lt;!&ndash;                method: "POST",&ndash;&gt;-->
+<!--&lt;!&ndash;                headers: { "Content-Type": "application/json" },&ndash;&gt;-->
+<!--&lt;!&ndash;                body: JSON.stringify({ email, password })&ndash;&gt;-->
+<!--&lt;!&ndash;            });&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;                if (response.ok) {&ndash;&gt;-->
+<!--&lt;!&ndash;                    const data = await response.json();&ndash;&gt;-->
+<!--&lt;!&ndash;                    alert("✅ Login successful!");&ndash;&gt;-->
+<!--&lt;!&ndash;                    // Fix this line: use 'token' instead of 'accessToken'&ndash;&gt;-->
+<!--&lt;!&ndash;                    localStorage.setItem("token", data.token);&ndash;&gt;-->
+<!--&lt;!&ndash;                // data.roles comes as an array like ["ROLE_ADMIN", "ROLE_FARMER"]&ndash;&gt;-->
+<!--&lt;!&ndash;                const roles = data.roles;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                // Priority redirect: ADMIN first, then others&ndash;&gt;-->
+<!--&lt;!&ndash;                if (roles.includes("ROLE_ADMIN")) {&ndash;&gt;-->
+<!--&lt;!&ndash;                    window.location.href = "admin-dashboard.html";&ndash;&gt;-->
+<!--&lt;!&ndash;                } else if (roles.includes("ROLE_FARMER")) {&ndash;&gt;-->
+<!--&lt;!&ndash;                    window.location.href = "dashboard.html";&ndash;&gt;-->
+<!--&lt;!&ndash;                } else if (roles.includes("ROLE_TEACHER")) {&ndash;&gt;-->
+<!--&lt;!&ndash;                    window.location.href = "dashboard.html";&ndash;&gt;-->
+<!--&lt;!&ndash;                } else if (roles.includes("ROLE_HEALTH_WORKER")) {&ndash;&gt;-->
+<!--&lt;!&ndash;                    window.location.href = "dashboard.html";&ndash;&gt;-->
+<!--&lt;!&ndash;                } else if (roles.includes("ROLE_VILLAGER")) {&ndash;&gt;-->
+<!--&lt;!&ndash;                    window.location.href = "dashboard.html";&ndash;&gt;-->
+<!--&lt;!&ndash;                } else {&ndash;&gt;-->
+<!--&lt;!&ndash;                    alert("⚠️ Role not recognized, contact admin.");&ndash;&gt;-->
+<!--&lt;!&ndash;                }&ndash;&gt;-->
+
+<!--&lt;!&ndash;            } else {&ndash;&gt;-->
+<!--&lt;!&ndash;                alert("❌ Login failed: " + data.message);&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        } catch (err) {&ndash;&gt;-->
+<!--&lt;!&ndash;            console.error("Error:", err);&ndash;&gt;-->
+<!--&lt;!&ndash;            alert("⚠️ Something went wrong. Please try again.");&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    });&ndash;&gt;-->
+
+<!--&lt;!&ndash;</script>&ndash;&gt;-->
+
+<script>
+    document.getElementById("modalLoginForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("modalEmail").value;
+        const password = document.getElementById("modalPassword").value;
+
+        try {
+            const response = await fetch("http://localhost:8080/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (response.ok) {
+                const data = await response.json(); // Parse the JSON response
+
+                // Check if the token exists in the response
+                if (data.token) {
+                    // Correctly save the token to local storage
+                    localStorage.setItem("token", data.token);
+
+                    alert("✅ Login successful!");
+
+                    // Redirect based on roles
+                    const roles = data.roles;
+                    if (roles.includes("ROLE_ADMIN")) {
+                        window.location.href = "admin-dashboard.html";
+                    } else {
+                        window.location.href = "dashboard.html";
+                    }
+                } else {
+                    alert("❌ Login failed: Token not received.");
+                }
+
+            } else {
+                const error = await response.json();
+                alert("❌ Login failed: " + error.message);
+            }
+
+        } catch (err) {
+            console.error("Login error:", err);
+            alert("⚠️ Something went wrong. Please try again.");
+        }
+    });
+</script>
+
+
+</body>
+</html>

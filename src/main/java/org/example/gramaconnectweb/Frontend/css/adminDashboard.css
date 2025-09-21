@@ -1,0 +1,121 @@
+/* Base */
+body {
+    font-family: 'Inter', sans-serif;
+    background: #fefaf1; /* soft earthy background */
+    color: #3e3b32;
+    margin: 0;
+}
+
+/* Navigation */
+.navbar {
+    background: linear-gradient(135deg, #4CAF50, #2e7d32);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-brand h1 {
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.tagline {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Buttons */
+.btn-secondary {
+    background: #FFB74D;
+    color: #3e3b32;
+    font-weight: 600;
+    padding: 0.5rem 1.25rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: #FFA000;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    background: #fffef8;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    border-left: 6px solid #FFB74D;
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover .card-icon {
+    transform: rotate(10deg);
+}
+
+.card-stats {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #2e7d32;
+    margin-top: 1rem;
+}
+
+/* Role Badge */
+.role-badge {
+    background: #FFB74D;
+    color: white;
+    padding: 0.3rem 0.9rem;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    .navbar {
+        padding: 1rem;
+    }
+    .btn-secondary {
+        padding: 0.5rem 1rem;
+    }
+}

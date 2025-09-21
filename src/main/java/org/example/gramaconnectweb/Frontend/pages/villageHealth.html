@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Watch - GramaConnect</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <h1>GramaConnect</h1>
+            <span class="tagline">ගම් සම්බන්ධතාව</span>
+        </div>
+        <div class="nav-menu">
+            <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Container -->
+<main class="main-container">
+    <section class="screen active module-screen">
+        <div class="module-header">
+            <a href="dashboard.html" class="back-btn">← Back</a>
+            <h2>Village Health Watch</h2>
+            <button class="btn btn-primary health-worker-only">+ Add Health Update</button>
+        </div>
+
+        <div class="health-updates">
+            <div class="health-card urgent">
+                <div class="health-icon">💉</div>
+                <div class="health-content">
+                    <h3>Vaccination Drive</h3>
+                    <p>COVID-19 booster vaccination camp this Saturday at the village clinic from 9 AM to 4 PM.</p>
+                    <p class="sinhala">මේ සෙනසුරාදා උදේ 9 සිට සවස 4 දක්වා ගම් වෛද්‍ය මධ්‍යස්ථානයේ COVID-19 ආරක්ෂක එන්නත් කදවුර.</p>
+                    <span class="health-date">Posted 2 hours ago</span>
+                </div>
+            </div>
+
+            <div class="health-card prevention">
+                <div class="health-icon">🦟</div>
+                <div class="health-content">
+                    <h3>Dengue Prevention Tips</h3>
+                    <p>Remove stagnant water around your homes to prevent dengue mosquito breeding. Check water tanks, flower pots, and gutters regularly.</p>
+                    <p class="sinhala">ඩෙංගු මසුන් වර්ධනය වීම වළක්වා ගැනීම සඳහා ගේ අවට ජල රැඳී සිටින ස්ථාන ඉවත් කරන්න.</p>
+                    <span class="health-date">Posted yesterday</span>
+                </div>
+            </div>
+
+            <div class="health-card maternal">
+                <div class="health-icon">👶</div>
+                <div class="health-content">
+                    <h3>Maternal Care Program</h3>
+                    <p>Free prenatal checkups every Tuesday and Thursday at the health center. Nutritional supplements available.</p>
+                    <p class="sinhala">සෞඛ්‍ය මධ්‍යස්ථානයේ සෑම අඟහරුවාදා සහ බ්‍රහස්පතින්දා නොමිලේ ප්‍රසව පූර්ව පරීක්ෂණ.</p>
+                    <span class="health-date">Posted 3 days ago</span>
+                </div>
+            </div>
+
+            <div class="health-card prevention">
+                <div class="health-icon">🏥</div>
+                <div class="health-content">
+                    <h3>Health Screening Camp</h3>
+                    <p>Free diabetes and blood pressure screening next Monday. Early detection saves lives.</p>
+                    <p class="sinhala">ලබන සඳුදා නොමිලේ දියවැඩියා සහ රුධිර පීඩන පරීක්ෂණ. කල්තියා හඳුනා ගැනීම ජීවිත බේරා ගනී.</p>
+                    <span class="health-date">Posted 5 days ago</span>
+                </div>
+            </div>
+
+            <div class="health-card urgent">
+                <div class="health-icon">🚨</div>
+                <div class="health-content">
+                    <h3>Emergency Contact Numbers</h3>
+                    <p>Village Health Worker: 077-123-4567 | Ambulance: 1990 | Police: 119 | Fire: 110</p>
+                    <p class="sinhala">ගම් සෞඛ්‍ය සේවකයා: 077-123-4567 | ගිලන් රථය: 1990 | පොලිසිය: 119 | ගිනි නිවන සේවය: 110</p>
+                    <span class="health-date">Pinned post</span>
+                </div>
+            </div>
+
+            <div class="health-card maternal">
+                <div class="health-icon">🍎</div>
+                <div class="health-content">
+                    <h3>Nutrition Workshop</h3>
+                    <p>Learn about balanced diet and healthy cooking methods. Workshop this Friday at 2 PM.</p>
+                    <p class="sinhala">සමතුලිත ආහාර සහ සෞඛ්‍ය සම්පන්න ආහාර පිසීමේ ක්‍රම ගැන ඉගෙන ගන්න. මේ සිකුරාදා දහවල් 2ට වැඩමුළුව.</p>
+                    <span class="health-date">Posted 1 week ago</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Toast Notifications -->
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="js/auth.js"></script>
+<script src="js/health.js"></script>
+</body>
+</html>

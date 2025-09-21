@@ -1,0 +1,84 @@
+/* Modal Background */
+.modal {
+    display: none; /* hidden by default */
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Card */
+.modal-content {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 40px 30px;
+    width: 350px;
+    max-width: 90%;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Form */
+.modal-content .login-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+.modal-content .login-form input,
+.modal-content .login-form select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+}
+.modal-content .login-form input::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+/* Login Button */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.btn-login:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: #4ade80;
+}
+
+/* Register Link */
+.register-link {
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+.register-link a {
+    color: #4ade80;
+    text-decoration: none;
+}
+.register-link a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GramaConnect - Smart Village Platform</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <h1>GramaConnect</h1>
+            <span class="tagline">ගම් සම්බන්ධතාව</span>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Container -->
+<main class="main-container">
+    <!-- Login Screen -->
+    <section id="loginScreen" class="screen active">
+        <div class="login-container">
+            <div class="login-header">
+                <h2>Welcome to GramaConnect</h2>
+                <p>Connecting villages, empowering communities</p>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username / ප්‍රයෝජක නම</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password / මුරපදය</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userRole">Role / භූමිකාව</label>
+                    <select id="userRole" name="userRole" required>
+                        <option value="">Select Role</option>
+                        <option value="villager">Villager / ගම්වැසියා</option>
+                        <option value="farmer">Farmer / ගොවියා</option>
+                        <option value="health-worker">Health Worker / සෞඛ්‍ය සේවකයා</option>
+                        <option value="teacher">Teacher / ගුරුවරයා</option>
+                        <option value="admin">Administrator / පරිපාලක</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Login / ප්‍රවේශ වන්න</button>
+            </form>
+
+            <div class="login-footer">
+                <p>New user? <a href="#" id="registerLink" onclick="showScreen('registerScreen')">Register here / ලියාපදිංචි වන්න</a></p>
+            </div>
+        </div>
+    </section>
+    <!-- Registration Screen -->
+    <section id="registerScreen" class="screen">
+        <div class="form-container">
+            <h2>Create Account</h2>
+            <input type="text" id="regUsername" placeholder="Username" required>
+            <input type="password" id="regPassword" placeholder="Password" required>
+            <select id="regRole">
+                <option value="villager">Villager</option>
+                <option value="farmer">Farmer</option>
+                <option value="teacher">Teacher</option>
+                <option value="health-worker">Health Worker</option>
+            </select>
+            <button onclick="registerUser()">Register</button>
+            <p>Already have an account? <a href="#" onclick="showScreen('loginScreen')">Login here</a></p>
+        </div>
+    </section>
+
+
+    <!-- Dashboard Screen -->
+    <section id="dashboardScreen" class="screen">
+        <div class="dashboard-header">
+            <div class="user-info">
+                <h2 id="welcomeMessage">Welcome, User!</h2>
+                <p id="userRoleBadge" class="role-badge">Villager</p>
+            </div>
+            <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Village Notice Board -->
+            <div class="dashboard-card" data-module="notices">
+                <div class="card-icon">📢</div>
+                <h3>Village Notice Board</h3>
+                <p>ගම් නොඩිස් බෝඩ්</p>
+                <div class="card-stats">
+                    <span id="noticesCount">5 new notices</span>
+                </div>
+            </div>
+
+            <!-- Farmer's Corner -->
+            <div class="dashboard-card farmer-only" data-module="farming">
+                <div class="card-icon">🌾</div>
+                <h3>Farmer's Corner</h3>
+                <p>ගොවි කෙළවර</p>
+                <div class="card-stats">
+                    <span>Weather alerts, Tips</span>
+                </div>
+            </div>
+
+            <!-- Village Health Watch -->
+            <div class="dashboard-card" data-module="health">
+                <div class="card-icon">🏥</div>
+                <h3>Village Health Watch</h3>
+                <p>ගම් සෞඛ්‍ය සේවය</p>
+                <div class="card-stats">
+                    <span>3 health updates</span>
+                </div>
+            </div>
+
+            <!-- Job Portal -->
+            <div class="dashboard-card" data-module="jobs">
+                <div class="card-icon">💼</div>
+                <h3>Job Portal</h3>
+                <p>රැකියා කටයුතු</p>
+                <div class="card-stats">
+                    <span>12 new opportunities</span>
+                </div>
+            </div>
+
+            <!-- Village Academy -->
+            <div class="dashboard-card" data-module="education">
+                <div class="card-icon">📚</div>
+                <h3>Village Academy</h3>
+                <p>ගම් අධ්‍යාපනය</p>
+                <div class="card-stats">
+                    <span>New courses available</span>
+                </div>
+            </div>
+
+            <!-- Skills Market -->
+            <div class="dashboard-card" data-module="market">
+                <div class="card-icon">🛍️</div>
+                <h3>Skills Market</h3>
+                <p>කුසලතා වෙළඳපොළ</p>
+                <div class="card-stats">
+                    <span>Browse local products</span>
+                </div>
+            </div>
+<!--            &lt;!&ndash; Education Screen &ndash;&gt;-->
+<!--            <section id="educationScreen" class="screen module-screen">-->
+<!--                <div class="module-header">-->
+<!--                    <button class="back-btn" data-target="dashboardScreen">← Back</button>-->
+<!--                    <h2>Village Academy</h2>-->
+<!--                </div>-->
+<!--                <div class="content">-->
+<!--                    <div class="card">-->
+<!--                        <h3>Online Lessons</h3>-->
+<!--                        <p>Math, Science, English tutorials available.</p>-->
+<!--                        <button onclick="showToast('Lesson started')">Start Lesson</button>-->
+<!--                    </div>-->
+<!--                    <div class="card">-->
+<!--                        <h3>Upcoming Events</h3>-->
+<!--                        <ul>-->
+<!--                            <li>📅 Career Guidance - 15th Sep</li>-->
+<!--                            <li>📅 Tech Workshop - 22nd Sep</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </section>-->
+
+<!--            &lt;!&ndash; Market Screen &ndash;&gt;-->
+<!--            <section id="marketScreen" class="screen module-screen">-->
+<!--                <div class="module-header">-->
+<!--                    <button class="back-btn" data-target="dashboardScreen">← Back</button>-->
+<!--                    <h2>Skills Market</h2>-->
+<!--                </div>-->
+<!--                <div class="content">-->
+<!--                    <div class="card">-->
+<!--                        <h3>Local Talents</h3>-->
+<!--                        <ul>-->
+<!--                            <li>🧵 Handicrafts - Rs. 1200</li>-->
+<!--                            <li>🍯 Organic Honey - Rs. 800</li>-->
+<!--                            <li>🎨 Painting Lessons - Rs. 1500</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    <div class="card">-->
+<!--                        <h3>Sell Your Skill</h3>-->
+<!--                        <input type="text" id="skillName" placeholder="Your skill/product">-->
+<!--                        <input type="number" id="skillPrice" placeholder="Price (Rs)">-->
+<!--                        <button onclick="addSkill()">Post</button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </section>-->
+
+
+<!--            &lt;!&ndash; Admin Dashboard &ndash;&gt;-->
+<!--            <div class="dashboard-card admin-only" data-module="admin">-->
+<!--                <div class="card-icon">⚙️</div>-->
+<!--                <h3>Admin Dashboard</h3>-->
+<!--                <p>පරිපාලන පුවරුව</p>-->
+<!--                <div class="card-stats">-->
+<!--                    <span>Manage platform</span>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+
+    <!-- Village Notice Board -->
+    <section id="noticesScreen" class="screen module-screen">
+        <div class="module-header">
+            <button class="back-btn" data-target="dashboardScreen">← Back</button>
+            <h2>Village Notice Board</h2>
+            <button class="btn btn-primary add-notice-btn admin-only">+ Add Notice</button>
+        </div>
+
+        <div class="notices-container">
+            <div class="notice-item priority-high">
+                <div class="notice-header">
+                    <span class="notice-category">Emergency</span>
+                    <span class="notice-date">Today, 2:30 PM</span>
+                </div>
+                <h3>Power Outage Alert</h3>
+                <p>Scheduled power outage from 6 PM to 10 PM today in areas 1-5. Please prepare accordingly.</p>
+                <p class="sinhala">අද සවස 6 සිට රාත්‍රී 10 දක්වා 1-5 ප්‍රදේශවල විදුලිය නවතා තබන්නට නියමිතයි.</p>
+            </div>
+
+            <div class="notice-item priority-medium">
+                <div class="notice-header">
+                    <span class="notice-category">Community</span>
+                    <span class="notice-date">Yesterday</span>
+                </div>
+                <h3>Village Council Meeting</h3>
+                <p>Monthly village council meeting on Sunday, 3 PM at the community center.</p>
+                <p class="sinhala">ඉරිදා දින පස්වරු 3ට ප්‍රජා මධ්‍යස්ථානයේදී මාසික ගම් සභා රැස්වීම.</p>
+            </div>
+
+            <div class="notice-item priority-low">
+                <div class="notice-header">
+                    <span class="notice-category">Agriculture</span>
+                    <span class="notice-date">2 days ago</span>
+                </div>
+                <h3>Fertilizer Distribution</h3>
+                <p>Subsidized fertilizer distribution starts next Monday at the agricultural office.</p>
+                <p class="sinhala">ලබන සඳුදා කෘෂිකර්ම කාර්යාලයේදී සහනදායී පොහොර බෙදා හැරීම ආරම්භ වේ.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmer's Corner -->
+    <section id="farmingScreen" class="screen module-screen">
+        <div class="module-header">
+            <button class="back-btn" data-target="dashboardScreen">← Back</button>
+            <h2>Farmer's Corner</h2>
+            <div class="weather-widget">
+                <div class="weather-icon">☀️</div>
+                <div class="weather-info">
+                    <span class="temp">28°C</span>
+                    <span class="condition">Sunny</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="farming-tabs">
+            <button class="tab-btn active" data-tab="alerts">Weather Alerts</button>
+            <button class="tab-btn" data-tab="tips">Farming Tips</button>
+            <button class="tab-btn" data-tab="report">Report Issues</button>
+        </div>
+
+        <div class="tab-content active" data-content="alerts">
+            <div class="alert-card warning">
+                <h3>Heavy Rain Warning</h3>
+                <p>Heavy rainfall expected in the next 48 hours. Protect your crops and ensure proper drainage.</p>
+                <p class="sinhala">ඉදිරි පැය 48 තුළ අධික වර්ෂාව අපේක්ෂා කරයි. ඔබේ භෝග ආරක්ෂා කර නියම ජල පහසුකම් සලසන්න.</p>
+            </div>
+
+            <div class="alert-card info">
+                <h3>Best Planting Time</h3>
+                <p>Ideal conditions for planting rice. Soil moisture and temperature are optimal.</p>
+                <p class="sinhala">කුඹුරු සිටුවීම සඳහා කදිම කාලගුණික තත්ත්වයන්. පස් තෙතමනය හා උෂ්ණත්වය ප්‍රශස්තයි.</p>
+            </div>
+        </div>
+
+        <div class="tab-content" data-content="tips">
+            <div class="tip-card">
+                <h3>Pest Management</h3>
+                <p>Natural pest control using neem oil and companion planting techniques.</p>
+                <div class="tip-actions">
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <h3>Soil Health</h3>
+                <p>How to maintain soil fertility using organic compost and crop rotation.</p>
+                <div class="tip-actions">
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" data-content="report">
+            <div class="report-form">
+                <h3>Report Crop Issues</h3>
+                <form class="crop-report-form">
+                    <div class="form-group">
+                        <label>Issue Type</label>
+                        <select required>
+                            <option value="">Select issue type</option>
+                            <option value="pest">Pest Attack</option>
+                            <option value="disease">Plant Disease</option>
+                            <option value="weather">Weather Damage</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea placeholder="Describe the issue..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload Photo</label>
+                        <input type="file" accept="image/*" class="file-input">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit Report</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Village Health Watch -->
+    <section id="healthScreen" class="screen module-screen">
+        <div class="module-header">
+            <button class="back-btn" data-target="dashboardScreen">← Back</button>
+            <h2>Village Health Watch</h2>
+            <button class="btn btn-primary health-worker-only">+ Add Health Update</button>
+        </div>
+
+        <div class="health-updates">
+            <div class="health-card urgent">
+                <div class="health-icon">💉</div>
+                <div class="health-content">
+                    <h3>Vaccination Drive</h3>
+                    <p>COVID-19 booster vaccination camp this Saturday at the village clinic.</p>
+                    <p class="sinhala">මේ සෙනසුරාදා ගම් වෛද්‍ය මධ්‍යස්ථානයේ COVID-19 ආරක්ෂක එන්නත් කදවුර.</p>
+                    <span class="health-date">Posted 2 hours ago</span>
+                </div>
+            </div>
+
+            <div class="health-card prevention">
+                <div class="health-icon">🦟</div>
+                <div class="health-content">
+                    <h3>Dengue Prevention Tips</h3>
+                    <p>Remove stagnant water around your homes to prevent dengue mosquito breeding.</p>
+                    <p class="sinhala">ඩෙංගු මසුන් වර්ධනය වීම වළක්වා ගැනීම සඳහා ගේ අවට ජල රැඳී සිටින ස්ථාන ඉවත් කරන්න.</p>
+                    <span class="health-date">Posted yesterday</span>
+                </div>
+            </div>
+
+            <div class="health-card maternal">
+                <div class="health-icon">👶</div>
+                <div class="health-content">
+                    <h3>Maternal Care Program</h3>
+                    <p>Free prenatal checkups every Tuesday and Thursday at the health center.</p>
+                    <p class="sinhala">සෞඛ්‍ය මධ්‍යස්ථානයේ සෑම අඟහරුවාදා සහ බ්‍රහස්පතින්දා නොමිලේ ප්‍රසව පූර්ව පරීක්ෂණ.</p>
+                    <span class="health-date">Posted 3 days ago</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Portal -->
+    <section id="jobsScreen" class="screen module-screen">
+        <div class="module-header">
+            <button class="back-btn" data-target="dashboardScreen">← Back</button>
+            <h2>Job Portal</h2>
+            <div class="search-bar">
+                <input type="text" placeholder="Search jobs..." id="jobSearch">
+                <button class="btn btn-primary">Search</button>
+            </div>
+        </div>
+
+        <div class="job-filters">
+            <button class="filter-btn active" data-filter="all">All Jobs</button>
+            <button class="filter-btn" data-filter="agriculture">Agriculture</button>
+            <button class="filter-btn" data-filter="handicrafts">Handicrafts</button>
+            <button class="filter-btn" data-filter="services">Services</button>
+        </div>
+
+        <div class="jobs-list">
+            <div class="job-card" data-category="agriculture">
+                <div class="job-header">
+                    <h3>Farm Assistant</h3>
+                    <span class="job-type">Full-time</span>
+                </div>
+                <p class="job-description">Help with rice cultivation and vegetable farming. Experience preferred but training provided.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Nearby Village</span>
+                    <span class="job-salary">💰 Rs. 35,000/month</span>
+                </div>
+                <button class="btn btn-outline">Apply Now</button>
+            </div>
+
+            <div class="job-card" data-category="handicrafts">
+                <div class="job-header">
+                    <h3>Handloom Weaver</h3>
+                    <span class="job-type">Contract</span>
+                </div>
+                <p class="job-description">Create traditional handloom products. Work from home opportunity.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Work from Home</span>
+                    <span class="job-salary">💰 Rs. 500-800/piece</span>
+                </div>
+                <button class="btn btn-outline">Apply Now</button>
+            </div>
+
+            <div class="job-card" data-category="services">
+                <div class="job-header">
+                    <h3>Village Store Assistant</h3>
+                    <span class="job-type">Part-time</span>
+                </div>
+                <p class="job-description">Assist customers and manage inventory at local store. Good communication skills needed.</p>
+                <div class="job-details">
+                    <span class="job-location">📍 Village Center</span>
+                    <span class="job-salary">💰 Rs. 25,000/month</span>
+                </div>
+                <button class="btn btn-outline">Apply Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="adminScreen" class="screen module-screen admin-only">
+        <div class="module-header">
+            <button class="back-btn" data-target="dashboardScreen">← Back</button>
+            <h2>Admin Dashboard</h2>
+        </div>
+
+        <div class="admin-stats">
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <span class="stat-number">1,247</span>
+            </div>
+            <div class="stat-card">
+                <h3>Active Notices</h3>
+                <span class="stat-number">15</span>
+            </div>
+            <div class="stat-card">
+                <h3>Job Postings</h3>
+                <span class="stat-number">23</span>
+            </div>
+            <div class="stat-card">
+                <h3>Health Updates</h3>
+                <span class="stat-number">8</span>
+            </div>
+        </div>
+
+        <div class="admin-actions">
+            <button class="btn btn-primary">Moderate Content</button>
+            <button class="btn btn-primary">User Management</button>
+            <button class="btn btn-primary">System Settings</button>
+            <button class="btn btn-primary">Generate Reports</button>
+        </div>
+    </section>
+</main>
+
+<!-- Toast Notifications -->
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

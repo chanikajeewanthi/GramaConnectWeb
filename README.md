@@ -7,4 +7,5 @@ Backend:Import the Spring Boot project into your IDE (e.g., IntelliJ IDEA or Ecl
 Database:Create a MySQL database named gramaconnect.Run the provided SQL scripts to create tables and seed initial data.
 
 Additional APIs:Configure external weather API for farming alerts.
+
 video link - https://youtu.be/YeKBqBIOYng
